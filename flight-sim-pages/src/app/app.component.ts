@@ -55,7 +55,12 @@ export class AppComponent {
   letters = signal<LetterItem[]>([]);
   revealed = signal(false);
   darkMode = signal(true);
+  alphabetVisible = signal(false);
   private alphabet: string[] = Object.keys(NATO_PHONETIC);
+  readonly fullAlphabet: LetterItem[] = this.alphabet.map((l) => ({
+    letter: l,
+    word: NATO_PHONETIC[l],
+  }));
 
   constructor() {
     this.newSession();
@@ -93,6 +98,10 @@ export class AppComponent {
 
   toggleDark(): void {
     this.darkMode.update((v) => !v);
+  }
+
+  toggleAlphabet(): void {
+    this.alphabetVisible.update((v) => !v);
   }
 
   segmentsFor(word: string): RevealSegment[] {
