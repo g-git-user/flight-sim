@@ -25,7 +25,10 @@ jobs:
       - name: Build Angular
         run: npm run build -- --configuration production
 
-      # À remplacer par ton système de déploiement
-      - name: Deploy
+      - name: Configure Git
         run: |
-          npm run deploy
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Deploy
+        run: npm run deploy
