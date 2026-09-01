@@ -28,4 +28,4 @@ jobs:
       # À remplacer par ton système de déploiement
       - name: Deploy
         run: |
-          # commande de déploiement ici
+          npm run deploy
