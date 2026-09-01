@@ -49,4 +49,21 @@
       </div>
     </div>
   </div>
+
+  <section class="alphabet-section">
+    <button class="alphabet-toggle" (click)="toggleAlphabet()">
+      Alphabet
+      <span class="chevron" [class.rotated]="alphabetVisible()">&#9662;</span>
+    </button>
+    @if (alphabetVisible()) {
+      <div class="alphabet-grid">
+        @for (item of fullAlphabet; track item.letter) {
+          <div class="alphabet-item">
+            <span class="alphabet-letter">{{ item.letter }}</span>
+            <span class="alphabet-word">{{ item.word }}</span>
+          </div>
+        }
+      </div>
+    }
+  </section>
 </div>
