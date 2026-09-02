@@ -51,12 +51,13 @@ interface RevealSegment {
 })
 export class AppComponent {
   readonly nbOptions = [1, 2, 3, 4, 5];
-  nbLetters = signal(5);
+  nbLetters = signal(1);
   letters = signal<LetterItem[]>([]);
   revealed = signal(false);
   darkMode = signal(true);
   alphabetVisible = signal(false);
   private alphabet: string[] = Object.keys(NATO_PHONETIC);
+  private lastPick: string | null = null;
   readonly fullAlphabet: LetterItem[] = this.alphabet.map((l) => ({
     letter: l,
     word: NATO_PHONETIC[l],
@@ -81,7 +82,12 @@ export class AppComponent {
   }
 
   newSession(): void {
-    const picked = this.shuffle(this.alphabet).slice(0, this.nbLetters());
+    let picked: string[];
+    do {
+      picked = this.shuffle(this.alphabet).slice(0, this.nbLetters());
+    } while (picked.join('') === this.lastPick);
+
+    this.lastPick = picked.join('');
     this.letters.set(
       picked.map((l) => ({ letter: l, word: NATO_PHONETIC[l] }))
     );

@@ -21,10 +21,10 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('h1')?.textContent).toContain('Alphabet Radio');
   });
 
-  it('should deal 5 letters by default', () => {
+  it('should deal 1 letter by default', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.letters().length).toBe(5);
+    expect(app.letters().length).toBe(1);
   });
 
   it('should pick the requested number of letters', () => {
