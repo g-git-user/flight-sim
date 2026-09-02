@@ -1,0 +1,89 @@
+.tod {
+  max-width: 600px;
+  margin: 2.5rem auto 0;
+}
+
+.tod-panel {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.tod-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+@media (max-width: 500px) {
+  .tod-fields {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tod-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.tod-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--border-hover);
+  text-align: left;
+}
+
+.tod-input {
+  padding: 0.9rem 1rem;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.tod-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.tod-results {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.tod-result {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.tod-result-value {
+  color: var(--accent);
+  text-align: right;
+  flex: 1;
+}
+
+.tod-result-label {
+  color: var(--border-hover);
+  font-weight: 500;
+  font-size: 1rem;
+  text-align: left;
+  flex: 1;
+}
