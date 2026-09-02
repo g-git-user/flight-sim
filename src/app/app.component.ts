@@ -39,6 +39,14 @@ interface RevealSegment {
   first: boolean;
 }
 
+type AppId = 'alphabet-radio' | 'conversion';
+
+interface AppEntry {
+  id: AppId;
+  label: string;
+  icon: string;
+}
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -50,6 +58,11 @@ interface RevealSegment {
   },
 })
 export class AppComponent {
+  readonly apps: AppEntry[] = [
+    { id: 'alphabet-radio', label: 'Alphabet Radio', icon: '✈' },
+    { id: 'conversion', label: 'Conversion', icon: '⇄' },
+  ];
+  activeApp = signal<AppId>('alphabet-radio');
   readonly nbOptions = [1, 2, 3, 4, 5];
   nbLetters = signal(1);
   letters = signal<LetterItem[]>([]);

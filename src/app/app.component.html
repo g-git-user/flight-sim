@@ -1,69 +1,96 @@
-<div class="container">
-  <h1>Alphabet Radio</h1>
+<div class="layout">
+  <nav class="sidebar">
+    <div class="sidebar-title">Flight Sim</div>
+    @for (app of apps; track app.id) {
+      <button
+        class="sidebar-item"
+        [class.active]="activeApp() === app.id"
+        (click)="activeApp.set(app.id)"
+      >
+        <span class="sidebar-icon">{{ app.icon }}</span>
+        <span class="sidebar-label">{{ app.label }}</span>
+      </button>
+    }
+  </nav>
 
-  <div class="controls">
-    <span class="label">Nombre de lettres :</span>
-    <div class="options">
-      @for (n of nbOptions; track n) {
-        <button
-          class="option"
-          [class.active]="nbLetters() === n"
-          (click)="setNbLetters(n)"
+  <main class="content">
+    @if (activeApp() === 'alphabet-radio') {
+      <div class="container">
+        <h1>Alphabet Radio</h1>
+
+        <div class="controls">
+          <span class="label">Nombre de lettres :</span>
+          <div class="options">
+            @for (n of nbOptions; track n) {
+              <button
+                class="option"
+                [class.active]="nbLetters() === n"
+                (click)="setNbLetters(n)"
+              >
+                {{ n }}
+              </button>
+            }
+          </div>
+          <button class="theme" (click)="toggleDark()" [attr.aria-label]="darkMode() ? 'Mode clair' : 'Mode sombre'">
+            @if (darkMode()) {
+              <img src="icons/sun.svg" alt="Mode clair" />
+            } @else {
+              <img src="icons/moon.svg" alt="Mode sombre" />
+            }
+          </button>
+        </div>
+
+        <div
+          class="card"
+          [class.revealed]="revealed()"
+          (click)="onCardClick()"
         >
-          {{ n }}
-        </button>
-      }
-    </div>
-    <button class="theme" (click)="toggleDark()" [attr.aria-label]="darkMode() ? 'Mode clair' : 'Mode sombre'">
-      @if (darkMode()) {
-        <img src="icons/sun.svg" alt="Mode clair" />
-      } @else {
-        <img src="icons/moon.svg" alt="Mode sombre" />
-      }
-    </button>
-  </div>
-
-  <div
-    class="card"
-    [class.revealed]="revealed()"
-    (click)="onCardClick()"
-  >
-    <div class="card-inner">
-      <div class="card-front">
-        @for (item of letters(); track item.letter) {
-          <span class="front-letter">
-            {{ item.letter }}
-          </span>
-        }
-      </div>
-      <div class="card-back">
-        @for (item of letters(); track item.letter) {
-          <div class="item">
-            <span class="item-word">
-              @for (seg of segmentsFor(item.word); track $index) {
-                <span [class.first]="seg.first">{{ seg.char }}</span>
+          <div class="card-inner">
+            <div class="card-front">
+              @for (item of letters(); track item.letter) {
+                <span class="front-letter">
+                  {{ item.letter }}
+                </span>
               }
-            </span>
+            </div>
+            <div class="card-back">
+              @for (item of letters(); track item.letter) {
+                <div class="item">
+                  <span class="item-word">
+                    @for (seg of segmentsFor(item.word); track $index) {
+                      <span [class.first]="seg.first">{{ seg.char }}</span>
+                    }
+                  </span>
+                </div>
+              }
+            </div>
           </div>
-        }
-      </div>
-    </div>
-  </div>
+        </div>
 
-  <section class="alphabet-section">
-    <button class="alphabet-toggle" (click)="toggleAlphabet()">
-      Alphabet
-      <span class="chevron" [class.rotated]="alphabetVisible()">&#9662;</span>
-    </button>
-    @if (alphabetVisible()) {
-      <div class="alphabet-grid">
-        @for (item of fullAlphabet; track item.letter) {
-          <div class="alphabet-item">
-            <span class="alphabet-letter">{{ item.letter }}</span>
-            <span class="alphabet-word">{{ item.word }}</span>
-          </div>
-        }
+        <section class="alphabet-section">
+          <button class="alphabet-toggle" (click)="toggleAlphabet()">
+            Alphabet
+            <span class="chevron" [class.rotated]="alphabetVisible()">&#9662;</span>
+          </button>
+          @if (alphabetVisible()) {
+            <div class="alphabet-grid">
+              @for (item of fullAlphabet; track item.letter) {
+                <div class="alphabet-item">
+                  <span class="alphabet-letter">{{ item.letter }}</span>
+                  <span class="alphabet-word">{{ item.word }}</span>
+                </div>
+              }
+            </div>
+          }
+        </section>
       </div>
     }
-  </section>
+
+    @if (activeApp() === 'conversion') {
+      <div class="container">
+        <h1>Conversion</h1>
+        <p class="placeholder">Application en construction...</p>
+      </div>
+    }
+  </main>
 </div>
