@@ -16,10 +16,19 @@
   <main class="content">
     @if (activeApp() === 'alphabet-radio') {
       <div class="container">
-        <h1>Alphabet Radio</h1>
+        <div class="app-header">
+          <h1>Radio Alphabet</h1>
+          <button class="theme" (click)="toggleDark()" [attr.aria-label]="darkMode() ? 'Light mode' : 'Dark mode'">
+            @if (darkMode()) {
+              <img src="icons/sun.svg" alt="Light mode" />
+            } @else {
+              <img src="icons/moon.svg" alt="Dark mode" />
+            }
+          </button>
+        </div>
 
         <div class="controls">
-          <span class="label">Nombre de lettres :</span>
+          <span class="label">Number of letters:</span>
           <div class="options">
             @for (n of nbOptions; track n) {
               <button
@@ -31,13 +40,6 @@
               </button>
             }
           </div>
-          <button class="theme" (click)="toggleDark()" [attr.aria-label]="darkMode() ? 'Mode clair' : 'Mode sombre'">
-            @if (darkMode()) {
-              <img src="icons/sun.svg" alt="Mode clair" />
-            } @else {
-              <img src="icons/moon.svg" alt="Mode sombre" />
-            }
-          </button>
         </div>
 
         <div
@@ -87,9 +89,82 @@
     }
 
     @if (activeApp() === 'conversion') {
+      <section class="container">
+        <div class="app-header">
+          <h1>Conversion</h1>
+          <button class="theme" (click)="toggleDark()" [attr.aria-label]="darkMode() ? 'Light mode' : 'Dark mode'">
+            @if (darkMode()) {
+              <img src="icons/sun.svg" alt="Light mode" />
+            } @else {
+              <img src="icons/moon.svg" alt="Dark mode" />
+            }
+          </button>
+        </div>
+        <app-conversion />
+      </section>
+    }
+
+    @if (activeApp() === 'top-of-descent') {
       <div class="container">
-        <h1>Conversion</h1>
-        <p class="placeholder">Application en construction...</p>
+        <div class="app-header">
+          <h1>Top of Descent</h1>
+          <button class="theme" (click)="toggleDark()" [attr.aria-label]="darkMode() ? 'Light mode' : 'Dark mode'">
+            @if (darkMode()) {
+              <img src="icons/sun.svg" alt="Light mode" />
+            } @else {
+              <img src="icons/moon.svg" alt="Dark mode" />
+            }
+          </button>
+        </div>
+        <p class="placeholder">Application under construction...</p>
+      </div>
+    }
+
+    @if (activeApp() === 'app1') {
+      <div class="container">
+        <div class="app-header">
+          <h1>App 1</h1>
+          <button class="theme" (click)="toggleDark()" [attr.aria-label]="darkMode() ? 'Light mode' : 'Dark mode'">
+            @if (darkMode()) {
+              <img src="icons/sun.svg" alt="Light mode" />
+            } @else {
+              <img src="icons/moon.svg" alt="Dark mode" />
+            }
+          </button>
+        </div>
+        <p class="placeholder">Application under construction...</p>
+      </div>
+    }
+
+    @if (activeApp() === 'app2') {
+      <div class="container">
+        <div class="app-header">
+          <h1>App 2</h1>
+          <button class="theme" (click)="toggleDark()" [attr.aria-label]="darkMode() ? 'Light mode' : 'Dark mode'">
+            @if (darkMode()) {
+              <img src="icons/sun.svg" alt="Light mode" />
+            } @else {
+              <img src="icons/moon.svg" alt="Dark mode" />
+            }
+          </button>
+        </div>
+        <p class="placeholder">Application under construction...</p>
+      </div>
+    }
+
+    @if (activeApp() === 'app3') {
+      <div class="container">
+        <div class="app-header">
+          <h1>App 3</h1>
+          <button class="theme" (click)="toggleDark()" [attr.aria-label]="darkMode() ? 'Light mode' : 'Dark mode'">
+            @if (darkMode()) {
+              <img src="icons/sun.svg" alt="Light mode" />
+            } @else {
+              <img src="icons/moon.svg" alt="Dark mode" />
+            }
+          </button>
+        </div>
+        <p class="placeholder">Application under construction...</p>
       </div>
     }
   </main>

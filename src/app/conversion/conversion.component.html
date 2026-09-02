@@ -1,0 +1,41 @@
+<div class="conversion">
+  @for (section of sections; track section.title) {
+    <div class="conv-panel">
+      <h2>{{ section.title }}</h2>
+
+      <div class="conv-row">
+        @for (unit of section.units; track unit) {
+          <label class="conv-radio">
+            <input
+              type="radio"
+              name="{{ section.title }}From"
+              [value]="unit"
+              [checked]="section.fromUnit === unit"
+              (change)="section.fromUnit = unit"
+            />
+            {{ unit }}
+          </label>
+        }
+      </div>
+
+      <input
+        class="conv-input"
+        type="number"
+        [value]="section.value"
+        (input)="onInput($event, section)"
+        placeholder="Enter value"
+      />
+
+      <div class="conv-results">
+        @for (unit of section.units; track unit) {
+          @if (unit !== section.fromUnit) {
+            <div class="conv-result">
+              <div class="conv-result-value">{{ resultFor(section, unit) }}</div>
+              <div class="conv-result-label">{{ unit }}</div>
+            </div>
+          }
+        }
+      </div>
+    </div>
+  }
+</div>

@@ -18,7 +18,7 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Alphabet Radio');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Radio Alphabet');
   });
 
   it('should deal 1 letter by default', () => {

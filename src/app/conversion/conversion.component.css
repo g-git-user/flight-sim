@@ -1,0 +1,115 @@
+.conversion {
+  max-width: 900px;
+  margin: 2.5rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .conversion {
+    grid-template-columns: 1fr;
+  }
+}
+
+.conv-panel {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.conv-panel h2 {
+  margin: 0 0 1.25rem;
+  font-size: 1.4rem;
+  color: var(--text);
+}
+
+.conv-input {
+  display: block;
+  width: 100%;
+  padding: 0.9rem 1rem;
+  margin: 1rem 0;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.conv-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.conv-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.conv-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.conv-radio:hover {
+  border-color: var(--border-hover);
+}
+
+.conv-radio input {
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.conv-results {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.conv-result {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.conv-result-value,
+.conv-result-label {
+  flex: 1;
+  max-width: 200px;
+}
+
+.conv-result-label {
+  color: var(--border-hover);
+  font-weight: 500;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.conv-result-value {
+  color: var(--accent);
+  text-align: right;
+}
