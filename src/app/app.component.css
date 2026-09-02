@@ -68,11 +68,8 @@
   display: contents;
 }
 
-.pagination-dots {
-  display: none;
-}
-
 .sidebar-item {
+  display: flex;
   align-items: center;
   gap: 0.75rem;
   width: 100%;
@@ -187,26 +184,5 @@
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-
-  .pagination-dots {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.2rem 0;
-  }
-
-  .dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--border);
-    border: none;
-    padding: 0;
-    cursor: pointer;
-  }
-
-  .dot.active {
-    background: var(--accent);
   }
 }
