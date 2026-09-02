@@ -111,11 +111,12 @@
   white-space: nowrap;
 }
 
-.content {
-  margin-left: var(--sidebar-width);
-  flex: 1;
-  min-height: 100vh;
-}
+  .content {
+    margin-left: var(--sidebar-width);
+    flex: 1;
+    min-height: 100vh;
+    padding-bottom: 120px;
+  }
 
 @media (max-width: 600px) {
   :host {
