@@ -25,6 +25,36 @@
   color: var(--text);
 }
 
+.conv-fuel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.conv-fuel-btn {
+  padding: 0.45rem 1.1rem;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.conv-fuel-btn:hover {
+  border-color: var(--border-hover);
+}
+
+.conv-fuel-btn.active {
+  background: var(--sidebar-active-bg);
+  border-color: var(--sidebar-active-bg);
+  color: #fff;
+}
+
 .conv-input {
   display: block;
   width: 100%;

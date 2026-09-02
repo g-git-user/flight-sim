@@ -9,6 +9,20 @@
     <div class="conv-panel">
       <h2>{{ section.title }}</h2>
 
+      @if (section.fuelTypes) {
+        <div class="conv-fuel">
+          @for (fuel of section.fuelTypes; track fuel.name) {
+            <button
+              class="conv-fuel-btn"
+              [class.active]="section.activeFuel === fuel.name"
+              (click)="setFuel(section, fuel.name)"
+            >
+              {{ fuel.name }}
+            </button>
+          }
+        </div>
+      }
+
       <div class="conv-row">
         @for (unit of section.units; track unit) {
           <label class="conv-radio">
