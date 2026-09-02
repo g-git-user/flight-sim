@@ -1,4 +1,5 @@
 import { Component, signal } from '@angular/core';
+import { ConversionComponent } from './conversion/conversion.component';
 
 interface LetterItem {
   letter: string;
@@ -39,7 +40,7 @@ interface RevealSegment {
   first: boolean;
 }
 
-type AppId = 'alphabet-radio' | 'conversion';
+type AppId = 'alphabet-radio' | 'conversion' | 'top-of-descent' | 'app1' | 'app2' | 'app3';
 
 interface AppEntry {
   id: AppId;
@@ -50,7 +51,7 @@ interface AppEntry {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [],
+  imports: [ConversionComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   host: {
@@ -59,8 +60,12 @@ interface AppEntry {
 })
 export class AppComponent {
   readonly apps: AppEntry[] = [
-    { id: 'alphabet-radio', label: 'Alphabet Radio', icon: '✈' },
+    { id: 'alphabet-radio', label: 'Radio Alphabet', icon: '✈' },
     { id: 'conversion', label: 'Conversion', icon: '⇄' },
+    { id: 'top-of-descent', label: 'Top of Descent', icon: '↓' },
+    { id: 'app1', label: 'App 1', icon: '1' },
+    { id: 'app2', label: 'App 2', icon: '2' },
+    { id: 'app3', label: 'App 3', icon: '3' },
   ];
   activeApp = signal<AppId>('alphabet-radio');
   readonly nbOptions = [1, 2, 3, 4, 5];
