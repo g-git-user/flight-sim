@@ -1,171 +1,19 @@
 <div class="layout">
   <nav class="sidebar">
     <div class="sidebar-title">Flight Sim</div>
-    @for (app of apps; track app.id) {
-      <button
+    @for (app of apps; track app.path) {
+      <a
         class="sidebar-item"
-        [class.active]="activeApp() === app.id"
-        (click)="activeApp.set(app.id)"
+        routerLink="/{{ app.path }}"
+        routerLinkActive="active"
       >
         <span class="sidebar-icon">{{ app.icon }}</span>
         <span class="sidebar-label">{{ app.label }}</span>
-      </button>
+      </a>
     }
   </nav>
 
   <main class="content">
-    @if (activeApp() === 'alphabet-radio') {
-      <div class="container">
-        <div class="app-header">
-          <h1>Radio Alphabet</h1>
-          <button class="theme" (click)="toggleDark()" [attr.aria-label]="darkMode() ? 'Light mode' : 'Dark mode'">
-            @if (darkMode()) {
-              <img src="icons/sun.svg" alt="Light mode" />
-            } @else {
-              <img src="icons/moon.svg" alt="Dark mode" />
-            }
-          </button>
-        </div>
-
-        <div class="controls">
-          <span class="label">Number of letters:</span>
-          <div class="options">
-            @for (n of nbOptions; track n) {
-              <button
-                class="option"
-                [class.active]="nbLetters() === n"
-                (click)="setNbLetters(n)"
-              >
-                {{ n }}
-              </button>
-            }
-          </div>
-        </div>
-
-        <div
-          class="card"
-          [class.revealed]="revealed()"
-          (click)="onCardClick()"
-        >
-          <div class="card-inner">
-            <div class="card-front">
-              @for (item of letters(); track item.letter) {
-                <span class="front-letter">
-                  {{ item.letter }}
-                </span>
-              }
-            </div>
-            <div class="card-back">
-              @for (item of letters(); track item.letter) {
-                <div class="item">
-                  <span class="item-word">
-                    @for (seg of segmentsFor(item.word); track $index) {
-                      <span [class.first]="seg.first">{{ seg.char }}</span>
-                    }
-                  </span>
-                </div>
-              }
-            </div>
-          </div>
-        </div>
-
-        <section class="alphabet-section">
-          <button class="alphabet-toggle" (click)="toggleAlphabet()">
-            Alphabet
-            <span class="chevron" [class.rotated]="alphabetVisible()">&#9662;</span>
-          </button>
-          @if (alphabetVisible()) {
-            <div class="alphabet-grid">
-              @for (item of fullAlphabet; track item.letter) {
-                <div class="alphabet-item">
-                  <span class="alphabet-letter">{{ item.letter }}</span>
-                  <span class="alphabet-word">{{ item.word }}</span>
-                </div>
-              }
-            </div>
-          }
-        </section>
-      </div>
-    }
-
-    @if (activeApp() === 'conversion') {
-      <section class="container">
-        <div class="app-header">
-          <h1>Conversion</h1>
-          <button class="theme" (click)="toggleDark()" [attr.aria-label]="darkMode() ? 'Light mode' : 'Dark mode'">
-            @if (darkMode()) {
-              <img src="icons/sun.svg" alt="Light mode" />
-            } @else {
-              <img src="icons/moon.svg" alt="Dark mode" />
-            }
-          </button>
-        </div>
-        <app-conversion />
-      </section>
-    }
-
-    @if (activeApp() === 'top-of-descent') {
-      <div class="container">
-        <div class="app-header">
-          <h1>Top of Descent</h1>
-          <button class="theme" (click)="toggleDark()" [attr.aria-label]="darkMode() ? 'Light mode' : 'Dark mode'">
-            @if (darkMode()) {
-              <img src="icons/sun.svg" alt="Light mode" />
-            } @else {
-              <img src="icons/moon.svg" alt="Dark mode" />
-            }
-          </button>
-        </div>
-        <p class="placeholder">Application under construction...</p>
-      </div>
-    }
-
-    @if (activeApp() === 'app1') {
-      <div class="container">
-        <div class="app-header">
-          <h1>App 1</h1>
-          <button class="theme" (click)="toggleDark()" [attr.aria-label]="darkMode() ? 'Light mode' : 'Dark mode'">
-            @if (darkMode()) {
-              <img src="icons/sun.svg" alt="Light mode" />
-            } @else {
-              <img src="icons/moon.svg" alt="Dark mode" />
-            }
-          </button>
-        </div>
-        <p class="placeholder">Application under construction...</p>
-      </div>
-    }
-
-    @if (activeApp() === 'app2') {
-      <div class="container">
-        <div class="app-header">
-          <h1>App 2</h1>
-          <button class="theme" (click)="toggleDark()" [attr.aria-label]="darkMode() ? 'Light mode' : 'Dark mode'">
-            @if (darkMode()) {
-              <img src="icons/sun.svg" alt="Light mode" />
-            } @else {
-              <img src="icons/moon.svg" alt="Dark mode" />
-            }
-          </button>
-        </div>
-        <p class="placeholder">Application under construction...</p>
-      </div>
-    }
-
-    @if (activeApp() === 'app3') {
-      <div class="container">
-        <div class="app-header">
-          <h1>App 3</h1>
-          <button class="theme" (click)="toggleDark()" [attr.aria-label]="darkMode() ? 'Light mode' : 'Dark mode'">
-            @if (darkMode()) {
-              <img src="icons/sun.svg" alt="Light mode" />
-            } @else {
-              <img src="icons/moon.svg" alt="Dark mode" />
-            }
-          </button>
-        </div>
-        <p class="placeholder">Application under construction...</p>
-      </div>
-    }
+    <router-outlet />
   </main>
 </div>

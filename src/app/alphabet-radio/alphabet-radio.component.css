@@ -1,0 +1,198 @@
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 2.5rem 0;
+}
+
+.label {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.options {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.option {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 8px;
+  border: 2px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.option:hover {
+  border-color: var(--border-hover);
+}
+
+.option.active {
+  background: #1d3557;
+  border-color: #1d3557;
+  color: #fff;
+}
+
+.card {
+  --letter-size: clamp(2.5rem, 6vw, 5rem);
+  width: min(860px, 100%);
+  margin: 0 auto;
+  perspective: 1200px;
+  cursor: pointer;
+}
+
+.card-inner {
+  position: relative;
+  display: grid;
+  width: 100%;
+  min-height: 340px;
+  transform-style: preserve-3d;
+  transition: none;
+}
+
+.card.revealed .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  grid-area: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.card-front {
+  background: var(--surface);
+  border: 4px solid var(--back-border);
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.card-front .front-letter {
+  font-size: var(--letter-size);
+  font-weight: 800;
+  color: var(--text);
+  border: 3px solid var(--accent);
+  border-radius: 16px;
+  min-width: 1.4em;
+  padding: 0.25rem 0.35rem;
+  line-height: 1.2;
+}
+
+.card-back {
+  background: var(--surface);
+  border: 4px solid var(--back-border);
+  transform: rotateY(180deg);
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 0.75rem 2.5rem;
+  padding: 2rem;
+}
+
+.card-back .item {
+  display: flex;
+  align-items: center;
+}
+
+.card-back .item-word {
+  font-size: var(--letter-size);
+  font-weight: 800;
+  color: var(--text);
+}
+
+.card-back .item-word .first {
+  color: var(--accent);
+}
+
+@media (max-width: 600px) {
+  .card {
+    --letter-size: clamp(1.5rem, 9vw, 2.75rem);
+  }
+
+  .card,
+  .card-inner {
+    min-height: 280px;
+  }
+
+  .card-front {
+    gap: 0.5rem;
+  }
+
+  .card-back {
+    gap: 0.75rem 1.25rem;
+    padding: 1rem;
+  }
+}
+
+.alphabet-section {
+  margin-top: 3rem;
+}
+
+.alphabet-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s ease, all 0.2s ease;
+}
+
+.alphabet-toggle:hover {
+  border-color: var(--border-hover);
+}
+
+.chevron {
+  font-size: 0.9rem;
+  transition: transform 0.3s ease;
+}
+
+.chevron.rotated {
+  transform: rotate(180deg);
+}
+
+.alphabet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.alphabet-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 0.75rem;
+  border-radius: 12px;
+  border: 2px solid var(--border);
+  background: var(--surface);
+}
+
+.alphabet-item .alphabet-letter {
+  font-weight: 800;
+  font-size: 1.6rem;
+  color: var(--accent);
+}
+
+.alphabet-item .alphabet-word {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text);
+}

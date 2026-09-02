@@ -1,4 +1,10 @@
-<div class="conversion">
+<div class="container">
+  <div class="app-header">
+    <h1>Conversion</h1>
+    <app-theme-toggle />
+  </div>
+
+  <div class="conversion">
   @for (section of sections; track section.title) {
     <div class="conv-panel">
       <h2>{{ section.title }}</h2>
@@ -38,4 +44,5 @@
       </div>
     </div>
   }
+  </div>
 </div>
