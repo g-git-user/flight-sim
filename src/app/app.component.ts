@@ -72,12 +72,6 @@ export class AppComponent implements OnInit {
     }
   }
 
-  goToPage(index: number): void {
-    if (index >= 0 && index < this.appPages().length) {
-      this.currentPage.set(index);
-    }
-  }
-
   nextPage(): void {
     if (this.currentPage() < this.appPages().length - 1) {
       this.currentPage.update((p) => p + 1);
