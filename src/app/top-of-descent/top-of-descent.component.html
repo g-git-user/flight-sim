@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="app-header">
+    <h1>Top of Descent</h1>
+    <app-theme-toggle />
+  </div>
+
+  <div class="tod">
+    <div class="tod-panel">
+      <div class="tod-fields">
+        <div class="tod-field">
+          <label class="tod-label">Current Altitude (ft)</label>
+          <input
+            class="tod-input"
+            type="number"
+            [value]="currentAltitude"
+            (input)="onInput($event, 'currentAltitude')"
+          />
+        </div>
+
+        <div class="tod-field">
+          <label class="tod-label">Target Altitude (ft)</label>
+          <input
+            class="tod-input"
+            type="number"
+            [value]="targetAltitude"
+            (input)="onInput($event, 'targetAltitude')"
+          />
+        </div>
+
+        <div class="tod-field">
+          <label class="tod-label">Ground Speed (kt)</label>
+          <input
+            class="tod-input"
+            type="number"
+            [value]="groundSpeed"
+            (input)="onInput($event, 'groundSpeed')"
+          />
+        </div>
+
+        <div class="tod-field">
+          <label class="tod-label">Descent Angle (°)</label>
+          <input
+            class="tod-input"
+            type="number"
+            [value]="descentAngle"
+            (input)="onInput($event, 'descentAngle')"
+          />
+        </div>
+      </div>
+
+      <div class="tod-results">
+        <div class="tod-result">
+          <div class="tod-result-value">{{ todDistance }}</div>
+          <div class="tod-result-label">TOD Distance (NM)</div>
+        </div>
+        <div class="tod-result">
+          <div class="tod-result-value">{{ descentRate }}</div>
+          <div class="tod-result-label">Descent Rate (fpm)</div>
+        </div>
+        <div class="tod-result">
+          <div class="tod-result-value">{{ timeToDescend }}</div>
+          <div class="tod-result-label">Time to Descend (min)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
