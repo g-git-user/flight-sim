@@ -1,0 +1,109 @@
+import { Component, signal } from '@angular/core';
+import { ThemeToggleComponent } from '../theme-toggle.component';
+
+interface LetterItem {
+  letter: string;
+  word: string;
+}
+
+interface RevealSegment {
+  char: string;
+  first: boolean;
+}
+
+const NATO_PHONETIC: Record<string, string> = {
+  'A': 'Alpha',
+  'B': 'Bravo',
+  'C': 'Charlie',
+  'D': 'Delta',
+  'E': 'Echo',
+  'F': 'Foxtrot',
+  'G': 'Golf',
+  'H': 'Hotel',
+  'I': 'India',
+  'J': 'Juliett',
+  'K': 'Kilo',
+  'L': 'Lima',
+  'M': 'Mike',
+  'N': 'November',
+  'O': 'Oscar',
+  'P': 'Papa',
+  'Q': 'Quebec',
+  'R': 'Romeo',
+  'S': 'Sierra',
+  'T': 'Tango',
+  'U': 'Uniform',
+  'V': 'Victor',
+  'W': 'Whiskey',
+  'X': 'Xray',
+  'Y': 'Yankee',
+  'Z': 'Zulu',
+};
+
+@Component({
+  selector: 'app-alphabet-radio',
+  standalone: true,
+  imports: [ThemeToggleComponent],
+  templateUrl: './alphabet-radio.component.html',
+  styleUrl: './alphabet-radio.component.css',
+})
+export class AlphabetRadioComponent {
+  readonly nbOptions = [1, 2, 3, 4, 5];
+  readonly nbLetters = signal(1);
+  readonly letters = signal<LetterItem[]>([]);
+  readonly revealed = signal(false);
+  readonly alphabetVisible = signal(false);
+  private readonly alphabet: string[] = Object.keys(NATO_PHONETIC);
+  private lastPick: string | null = null;
+  readonly fullAlphabet: LetterItem[] = this.alphabet.map((l) => ({
+    letter: l,
+    word: NATO_PHONETIC[l],
+  }));
+
+  constructor() {
+    this.newSession();
+  }
+
+  setNbLetters(nb: number): void {
+    this.nbLetters.set(nb);
+    this.newSession();
+  }
+
+  private shuffle<T>(array: T[]): T[] {
+    const arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  newSession(): void {
+    let picked: string[];
+    do {
+      picked = this.shuffle(this.alphabet).slice(0, this.nbLetters());
+    } while (picked.join('') === this.lastPick);
+
+    this.lastPick = picked.join('');
+    this.letters.set(
+      picked.map((l) => ({ letter: l, word: NATO_PHONETIC[l] }))
+    );
+    this.revealed.set(false);
+  }
+
+  onCardClick(): void {
+    if (this.revealed()) {
+      this.newSession();
+    } else {
+      this.revealed.set(true);
+    }
+  }
+
+  toggleAlphabet(): void {
+    this.alphabetVisible.update((v) => !v);
+  }
+
+  segmentsFor(word: string): RevealSegment[] {
+    return word.split('').map((char, i) => ({ char, first: i === 0 }));
+  }
+}

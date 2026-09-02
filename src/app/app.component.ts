@@ -1,134 +1,26 @@
-import { Component, signal } from '@angular/core';
-import { ConversionComponent } from './conversion/conversion.component';
-
-interface LetterItem {
-  letter: string;
-  word: string;
-}
-
-const NATO_PHONETIC: Record<string, string> = {
-  'A': 'Alpha',
-  'B': 'Bravo',
-  'C': 'Charlie',
-  'D': 'Delta',
-  'E': 'Echo',
-  'F': 'Foxtrot',
-  'G': 'Golf',
-  'H': 'Hotel',
-  'I': 'India',
-  'J': 'Juliett',
-  'K': 'Kilo',
-  'L': 'Lima',
-  'M': 'Mike',
-  'N': 'November',
-  'O': 'Oscar',
-  'P': 'Papa',
-  'Q': 'Quebec',
-  'R': 'Romeo',
-  'S': 'Sierra',
-  'T': 'Tango',
-  'U': 'Uniform',
-  'V': 'Victor',
-  'W': 'Whiskey',
-  'X': 'Xray',
-  'Y': 'Yankee',
-  'Z': 'Zulu',
-};
-
-interface RevealSegment {
-  char: string;
-  first: boolean;
-}
-
-type AppId = 'alphabet-radio' | 'conversion' | 'top-of-descent' | 'app1' | 'app2' | 'app3';
-
-interface AppEntry {
-  id: AppId;
-  label: string;
-  icon: string;
-}
+import { Component, inject } from '@angular/core';
+import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { ThemeService } from './theme.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ConversionComponent],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   host: {
-    '[class.dark]': 'darkMode()',
+    '[class.dark]': 'theme.isDark()',
   },
 })
 export class AppComponent {
-  readonly apps: AppEntry[] = [
-    { id: 'alphabet-radio', label: 'Radio Alphabet', icon: '✈' },
-    { id: 'conversion', label: 'Conversion', icon: '⇄' },
-    { id: 'top-of-descent', label: 'Top of Descent', icon: '↓' },
-    { id: 'app1', label: 'App 1', icon: '1' },
-    { id: 'app2', label: 'App 2', icon: '2' },
-    { id: 'app3', label: 'App 3', icon: '3' },
+  readonly theme = inject(ThemeService);
+
+  readonly apps = [
+    { path: 'alphabet-radio', label: 'Radio Alphabet', icon: '✈' },
+    { path: 'conversion', label: 'Conversion', icon: '⇄' },
+    { path: 'top-of-descent', label: 'Top of Descent', icon: '↓' },
+    { path: 'app1', label: 'App 1', icon: '1' },
+    { path: 'app2', label: 'App 2', icon: '2' },
+    { path: 'app3', label: 'App 3', icon: '3' },
   ];
-  activeApp = signal<AppId>('alphabet-radio');
-  readonly nbOptions = [1, 2, 3, 4, 5];
-  nbLetters = signal(1);
-  letters = signal<LetterItem[]>([]);
-  revealed = signal(false);
-  darkMode = signal(true);
-  alphabetVisible = signal(false);
-  private alphabet: string[] = Object.keys(NATO_PHONETIC);
-  private lastPick: string | null = null;
-  readonly fullAlphabet: LetterItem[] = this.alphabet.map((l) => ({
-    letter: l,
-    word: NATO_PHONETIC[l],
-  }));
-
-  constructor() {
-    this.newSession();
-  }
-
-  setNbLetters(nb: number): void {
-    this.nbLetters.set(nb);
-    this.newSession();
-  }
-
-  private shuffle<T>(array: T[]): T[] {
-    const arr = [...array];
-    for (let i = arr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
-  }
-
-  newSession(): void {
-    let picked: string[];
-    do {
-      picked = this.shuffle(this.alphabet).slice(0, this.nbLetters());
-    } while (picked.join('') === this.lastPick);
-
-    this.lastPick = picked.join('');
-    this.letters.set(
-      picked.map((l) => ({ letter: l, word: NATO_PHONETIC[l] }))
-    );
-    this.revealed.set(false);
-  }
-
-  onCardClick(): void {
-    if (this.revealed()) {
-      this.newSession();
-    } else {
-      this.revealed.set(true);
-    }
-  }
-
-  toggleDark(): void {
-    this.darkMode.update((v) => !v);
-  }
-
-  toggleAlphabet(): void {
-    this.alphabetVisible.update((v) => !v);
-  }
-
-  segmentsFor(word: string): RevealSegment[] {
-    return word.split('').map((char, i) => ({ char, first: i === 0 }));
-  }
 }
