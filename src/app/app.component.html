@@ -1,15 +1,44 @@
 <div class="layout">
-  <nav class="sidebar">
+  <nav
+    class="sidebar"
+    (touchstart)="onTouchStart($event)"
+    (touchend)="onTouchEnd($event)"
+  >
     <div class="sidebar-title">Flight Sim</div>
-    @for (app of apps; track app.path) {
-      <a
-        class="sidebar-item"
-        routerLink="/{{ app.path }}"
-        routerLinkActive="active"
+
+    <div class="sidebar-pages-container">
+      <div
+        class="sidebar-pages"
+        [style.transform]="'translateX(-' + (currentPage() * 100) + '%)'"
       >
-        <span class="sidebar-icon">{{ app.icon }}</span>
-        <span class="sidebar-label">{{ app.label }}</span>
-      </a>
+        @for (page of appPages(); track $index) {
+          <div class="sidebar-page">
+            @for (app of page; track app.path) {
+              <a
+                class="sidebar-item"
+                [routerLink]="'/' + app.path"
+                routerLinkActive="active"
+              >
+                <span class="sidebar-icon">{{ app.icon }}</span>
+                <span class="sidebar-label">{{ app.label }}</span>
+              </a>
+            }
+          </div>
+        }
+      </div>
+    </div>
+
+    @if (appPages().length > 1) {
+      <div class="pagination-dots">
+        @for (page of appPages(); track $index) {
+          <button
+            class="dot"
+            [class.active]="currentPage() === $index"
+            (click)="goToPage($index)"
+            [attr.aria-label]="'Page ' + ($index + 1)"
+          ></button>
+        }
+      </div>
     }
   </nav>
 
