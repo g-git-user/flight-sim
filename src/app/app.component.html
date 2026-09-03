@@ -19,7 +19,22 @@
                 [routerLink]="'/' + app.path"
                 routerLinkActive="active"
               >
-                <span class="sidebar-icon">{{ app.icon }}</span>
+                <span class="sidebar-icon">
+                  @if (app.svg) {
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path [attr.d]="app.svg" />
+                    </svg>
+                  } @else {
+                    {{ app.icon }}
+                  }
+                </span>
                 <span class="sidebar-label">{{ app.label }}</span>
               </a>
             }

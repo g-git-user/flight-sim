@@ -1,0 +1,128 @@
+<div class="container">
+  <div class="app-header">
+    <h1>Density Altitude</h1>
+    <app-theme-toggle />
+  </div>
+
+  <div class="da">
+    <div class="da-panel">
+      <h2 class="da-title">Density Altitude</h2>
+
+      <div class="da-fields">
+        <div class="da-field">
+          <label class="da-label">Airport Altitude</label>
+          <input
+            class="da-input"
+            type="number"
+            [value]="altitude"
+            (input)="onInput($event, 'altitude')"
+          />
+          <mat-button-toggle-group
+            class="da-toggle"
+            hideSingleSelectionIndicator
+            [value]="altUnit"
+            (valueChange)="altUnit = $event"
+          >
+            <mat-button-toggle value="ft">ft</mat-button-toggle>
+            <mat-button-toggle value="m">m</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+
+        <div class="da-field">
+          <label class="da-label">Air Temperature</label>
+          <input
+            class="da-input"
+            type="number"
+            [value]="temperature"
+            (input)="onInput($event, 'temperature')"
+          />
+          <mat-button-toggle-group
+            class="da-toggle"
+            hideSingleSelectionIndicator
+            [value]="tempUnit"
+            (valueChange)="tempUnit = $event"
+          >
+            <mat-button-toggle value="C">°C</mat-button-toggle>
+            <mat-button-toggle value="F">°F</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+
+        <div class="da-field">
+          <label class="da-label">Dew Point Temperature</label>
+          <input
+            class="da-input"
+            type="number"
+            [value]="dewPoint"
+            (input)="onInput($event, 'dewPoint')"
+          />
+          <mat-button-toggle-group
+            class="da-toggle"
+            hideSingleSelectionIndicator
+            [value]="dewPointUnit"
+            (valueChange)="dewPointUnit = $event"
+          >
+            <mat-button-toggle value="C">°C</mat-button-toggle>
+            <mat-button-toggle value="F">°F</mat-button-toggle>
+          </mat-button-toggle-group>
+          <label class="da-check">
+            <input
+              type="checkbox"
+              [checked]="dryAir"
+              (change)="onDryAirChange($event)"
+            />
+            Dry air approx.
+          </label>
+        </div>
+
+        <div class="da-field">
+          <label class="da-label">Airport QNH</label>
+          <input
+            class="da-input"
+            type="number"
+            [value]="qnh"
+            (input)="onInput($event, 'qnh')"
+          />
+          <mat-button-toggle-group
+            class="da-toggle"
+            hideSingleSelectionIndicator
+            [value]="qnhUnit"
+            (valueChange)="qnhUnit = $event"
+          >
+            <mat-button-toggle value="hPa">hPa</mat-button-toggle>
+            <mat-button-toggle value="inHg">inHg</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+      </div>
+
+      <div class="da-results">
+        <div class="da-result">
+          <div class="da-result-value">{{ pressureAltitude }}</div>
+          <div class="da-result-label">Pressure Altitude</div>
+          <mat-button-toggle-group
+            class="da-toggle da-result-toggle"
+            hideSingleSelectionIndicator
+            [value]="paUnit"
+            (valueChange)="paUnit = $event"
+          >
+            <mat-button-toggle value="ft">ft</mat-button-toggle>
+            <mat-button-toggle value="m">m</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+
+        <div class="da-result">
+          <div class="da-result-value">{{ densityAltitude }}</div>
+          <div class="da-result-label">Density Altitude</div>
+          <mat-button-toggle-group
+            class="da-toggle da-result-toggle"
+            hideSingleSelectionIndicator
+            [value]="daUnit"
+            (valueChange)="daUnit = $event"
+          >
+            <mat-button-toggle value="ft">ft</mat-button-toggle>
+            <mat-button-toggle value="m">m</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

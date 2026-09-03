@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="app-header">
+    <h1>Reminders</h1>
+    <app-theme-toggle />
+  </div>
+
+  <div class="reminders">
+    @for (formula of formulas; track formula.title) {
+      <section class="rem-panel">
+        <h2 class="rem-title">{{ formula.title }}</h2>
+        @for (line of formula.lines; track line) {
+          <p class="rem-line">{{ line }}</p>
+        }
+      </section>
+    }
+  </div>
+</div>

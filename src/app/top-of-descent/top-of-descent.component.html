@@ -1,11 +1,13 @@
 <div class="container">
   <div class="app-header">
-    <h1>Top of Descent</h1>
+    <h1>Descent profile</h1>
     <app-theme-toggle />
   </div>
 
   <div class="tod">
     <div class="tod-panel">
+      <h2 class="tod-title">Top of Descent (TOD)</h2>
+
       <div class="tod-fields">
         <div class="tod-field">
           <label class="tod-label">Current Altitude (ft)</label>
@@ -60,6 +62,63 @@
         <div class="tod-result">
           <div class="tod-result-value">{{ timeToDescend }}</div>
           <div class="tod-result-label">Time to Descend (min)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tod-panel">
+      <h2 class="tod-title">Required Descent Profile</h2>
+
+      <div class="tod-fields">
+        <div class="tod-field">
+          <label class="tod-label">Current Altitude (ft)</label>
+          <input
+            class="tod-input"
+            type="number"
+            [value]="profile.currentAltitude"
+            (input)="onProfileInput($event, 'currentAltitude')"
+          />
+        </div>
+
+        <div class="tod-field">
+          <label class="tod-label">Target Altitude (ft)</label>
+          <input
+            class="tod-input"
+            type="number"
+            [value]="profile.targetAltitude"
+            (input)="onProfileInput($event, 'targetAltitude')"
+          />
+        </div>
+
+        <div class="tod-field">
+          <label class="tod-label">Distance (NM)</label>
+          <input
+            class="tod-input"
+            type="number"
+            [value]="profile.distance"
+            (input)="onProfileInput($event, 'distance')"
+          />
+        </div>
+
+        <div class="tod-field">
+          <label class="tod-label">Ground Speed (kt)</label>
+          <input
+            class="tod-input"
+            type="number"
+            [value]="profile.groundSpeed"
+            (input)="onProfileInput($event, 'groundSpeed')"
+          />
+        </div>
+      </div>
+
+      <div class="tod-results">
+        <div class="tod-result">
+          <div class="tod-result-value">{{ requiredVerticalSpeed }}</div>
+          <div class="tod-result-label">Vertical Speed (fpm)</div>
+        </div>
+        <div class="tod-result">
+          <div class="tod-result-value">{{ requiredDescentAngle }}</div>
+          <div class="tod-result-label">Descent Angle (°)</div>
         </div>
       </div>
     </div>

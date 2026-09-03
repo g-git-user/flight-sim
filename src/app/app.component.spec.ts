@@ -26,7 +26,7 @@ describe('AppComponent', () => {
     );
     expect(labels).toContain('Radio Alphabet');
     expect(labels).toContain('Conversion');
-    expect(labels).toContain('Top of Descent');
+    expect(labels).toContain('Descent profile');
   });
 });
 
