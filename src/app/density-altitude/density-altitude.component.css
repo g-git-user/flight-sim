@@ -1,51 +1,48 @@
-.tod {
+.da {
   max-width: 600px;
   margin: 2.5rem auto 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
 }
 
-.tod-panel {
+.da-panel {
   background: var(--surface);
   border: 2px solid var(--border);
   border-radius: 16px;
   padding: 1.5rem;
 }
 
-.tod-title {
+.da-title {
   margin: 0 0 1.25rem;
   font-size: 1.4rem;
   color: var(--text);
 }
 
-.tod-fields {
+.da-fields {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
+  gap: 1.5rem 1.25rem;
 }
 
 @media (max-width: 500px) {
-  .tod-fields {
+  .da-fields {
     grid-template-columns: 1fr;
   }
 }
 
-.tod-field {
+.da-field {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
   min-width: 0;
 }
 
-.tod-label {
+.da-label {
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--border-hover);
   text-align: left;
 }
 
-.tod-input {
+.da-input {
   padding: 0.9rem 1rem;
   border: 2px solid var(--border);
   border-radius: 10px;
@@ -57,19 +54,39 @@
   box-sizing: border-box;
 }
 
-.tod-input:focus {
+.da-input:focus {
   outline: none;
   border-color: var(--accent);
 }
 
-.tod-results {
+.da-toggle {
+  align-self: flex-start;
+}
+
+.da-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+}
+
+.da-check input {
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.da-results {
   margin-top: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
-.tod-result {
+.da-result {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -83,13 +100,18 @@
   color: var(--text);
 }
 
-.tod-result-value {
+.da-result-toggle {
+  flex-shrink: 0;
+}
+
+.da-result-value {
   color: var(--accent);
   text-align: right;
   flex: 1;
+  font-size: 1.6rem;
 }
 
-.tod-result-label {
+.da-result-label {
   color: var(--border-hover);
   font-weight: 500;
   font-size: 1rem;

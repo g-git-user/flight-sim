@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { ThemeToggleComponent } from '../theme-toggle.component';
 
 type Unit = 'NM' | 'km' | 'ft' | 'm' | 'FL' | 'kt' | 'km/h' | 'mph' | 'inHg' | 'hPa' | 'mmHg' | 'kg' | 'lb' | 'gal' | 'L';
@@ -22,7 +23,7 @@ interface ConversionSection {
 @Component({
   selector: 'app-conversion',
   standalone: true,
-  imports: [ThemeToggleComponent],
+  imports: [ThemeToggleComponent, MatButtonToggleModule],
   templateUrl: './conversion.component.html',
   styleUrl: './conversion.component.css',
 })
@@ -87,8 +88,11 @@ export class ConversionComponent {
     section.value = (event.target as HTMLInputElement).value;
   }
 
-  setFuel(section: ConversionSection, name: string): void {
-    section.activeFuel = name;
+  toggleFuel(section: ConversionSection): void {
+    if (!section.fuelTypes?.length) return;
+    const current = section.fuelTypes.findIndex((f) => f.name === section.activeFuel);
+    const next = (current + 1) % section.fuelTypes.length;
+    section.activeFuel = section.fuelTypes[next]?.name;
   }
 
   factorOf(section: ConversionSection): Partial<Record<Unit, number>> {

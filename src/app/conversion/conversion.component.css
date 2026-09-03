@@ -30,7 +30,41 @@
   flex-wrap: wrap;
   gap: 0.5rem;
   justify-content: center;
+  align-items: center;
   margin-bottom: 1rem;
+}
+
+.conv-fuel-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.conv-row-fuel {
+  min-height: 0;
+}
+
+.conv-fuel-btns .conv-fuel-btn {
+  position: relative;
+  width: 8rem;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.conv-fuel-btn .conv-fuel-label {
+  width: 4.5rem;
+  white-space: nowrap;
+}
+
+.conv-fuel-btn .conv-fuel-icon {
+  width: 0.95rem;
+  height: 0.95rem;
+  flex-shrink: 0;
+  opacity: 0.85;
 }
 
 .conv-fuel-btn {
@@ -80,31 +114,8 @@
   flex-wrap: wrap;
   gap: 0.5rem 0.75rem;
   justify-content: center;
-  min-height: 5.75rem;
-  align-content: flex-start;
-}
-
-.conv-radio {
-  display: inline-flex;
+  min-height: 3.25rem;
   align-items: center;
-  gap: 0.35rem;
-  padding: 0.5rem 1rem;
-  border: 2px solid var(--border);
-  border-radius: 8px;
-  background: var(--bg);
-  color: var(--text);
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.conv-radio:hover {
-  border-color: var(--border-hover);
-}
-
-.conv-radio input {
-  accent-color: var(--accent);
-  cursor: pointer;
 }
 
 .conv-results {

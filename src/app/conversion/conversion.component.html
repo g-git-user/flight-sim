@@ -9,33 +9,42 @@
     <div class="conv-panel">
       <h2>{{ section.title }}</h2>
 
-      @if (section.fuelTypes) {
-        <div class="conv-fuel">
-          @for (fuel of section.fuelTypes; track fuel.name) {
+      <div class="conv-fuel">
+        @if (section.fuelTypes) {
+          <div class="conv-fuel-btns">
             <button
-              class="conv-fuel-btn"
-              [class.active]="section.activeFuel === fuel.name"
-              (click)="setFuel(section, fuel.name)"
+              class="conv-fuel-btn active"
+              (click)="toggleFuel(section)"
             >
-              {{ fuel.name }}
+              <span class="conv-fuel-label">{{ section.activeFuel }}</span>
+              <svg
+                class="conv-fuel-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M17 1l4 4-4 4" />
+                <path d="M3 11V9a4 4 0 0 1 4-4h14" />
+                <path d="M7 23l-4-4 4-4" />
+                <path d="M21 13v2a4 4 0 0 1-4 4H3" />
+              </svg>
             </button>
-          }
-        </div>
-      }
-
-      <div class="conv-row">
-        @for (unit of section.units; track unit) {
-          <label class="conv-radio">
-            <input
-              type="radio"
-              name="{{ section.title }}From"
-              [value]="unit"
-              [checked]="section.fromUnit === unit"
-              (change)="section.fromUnit = unit"
-            />
-            {{ unit }}
-          </label>
+          </div>
         }
+        <div class="conv-row" [class.conv-row-fuel]="section.fuelTypes">
+          <mat-button-toggle-group
+            hideSingleSelectionIndicator
+            [value]="section.fromUnit"
+            (valueChange)="section.fromUnit = $event"
+          >
+            @for (unit of section.units; track unit) {
+              <mat-button-toggle [value]="unit">{{ unit }}</mat-button-toggle>
+            }
+          </mat-button-toggle-group>
+        </div>
       </div>
 
       <input
