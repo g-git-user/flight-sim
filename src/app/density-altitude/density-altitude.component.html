@@ -40,7 +40,7 @@
             class="da-toggle"
             hideSingleSelectionIndicator
             [value]="tempUnit"
-            (valueChange)="tempUnit = $event"
+            (valueChange)="onTempUnitChange($event)"
           >
             <mat-button-toggle value="C">°C</mat-button-toggle>
             <mat-button-toggle value="F">°F</mat-button-toggle>
@@ -55,23 +55,25 @@
             [value]="dewPoint"
             (input)="onInput($event, 'dewPoint')"
           />
-          <mat-button-toggle-group
-            class="da-toggle"
-            hideSingleSelectionIndicator
-            [value]="dewPointUnit"
-            (valueChange)="dewPointUnit = $event"
-          >
-            <mat-button-toggle value="C">°C</mat-button-toggle>
-            <mat-button-toggle value="F">°F</mat-button-toggle>
-          </mat-button-toggle-group>
-          <label class="da-check">
-            <input
-              type="checkbox"
-              [checked]="dryAir"
-              (change)="onDryAirChange($event)"
-            />
-            Dry air approx.
-          </label>
+          <div class="da-toggle-row">
+            <mat-button-toggle-group
+              class="da-toggle"
+              hideSingleSelectionIndicator
+              [value]="dewPointUnit"
+              (valueChange)="onDewPointUnitChange($event)"
+            >
+              <mat-button-toggle value="C">°C</mat-button-toggle>
+              <mat-button-toggle value="F">°F</mat-button-toggle>
+            </mat-button-toggle-group>
+            <label class="da-check">
+              <input
+                type="checkbox"
+                [checked]="dryAir"
+                (change)="onDryAirChange($event)"
+              />
+              Dry air approx.
+            </label>
+          </div>
         </div>
 
         <div class="da-field">
@@ -86,7 +88,7 @@
             class="da-toggle"
             hideSingleSelectionIndicator
             [value]="qnhUnit"
-            (valueChange)="qnhUnit = $event"
+            (valueChange)="onQnhUnitChange($event)"
           >
             <mat-button-toggle value="hPa">hPa</mat-button-toggle>
             <mat-button-toggle value="inHg">inHg</mat-button-toggle>
@@ -117,6 +119,19 @@
             hideSingleSelectionIndicator
             [value]="daUnit"
             (valueChange)="daUnit = $event"
+          >
+            <mat-button-toggle value="ft">ft</mat-button-toggle>
+            <mat-button-toggle value="m">m</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+
+        <div class="da-result">
+          <div class="da-result-value">{{ airDensity }}</div>
+          <div class="da-result-label">Air Density (kg/m³)</div>
+          <mat-button-toggle-group
+            class="da-toggle da-result-toggle da-result-toggle-hidden"
+            hideSingleSelectionIndicator
+            [value]="daUnit"
           >
             <mat-button-toggle value="ft">ft</mat-button-toggle>
             <mat-button-toggle value="m">m</mat-button-toggle>
