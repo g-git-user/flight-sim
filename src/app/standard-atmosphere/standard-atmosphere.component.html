@@ -1,0 +1,192 @@
+<div class="container">
+  <div class="app-header">
+    <h1>Standard Atmosphere</h1>
+    <app-theme-toggle />
+  </div>
+
+  <div class="sa">
+    <div class="sa-panel">
+      <h2 class="sa-title">1976 U.S. Standard Atmosphere</h2>
+
+      <div class="sa-fields">
+        <div class="sa-field sa-mode-field">
+          <label class="sa-label">Input Mode</label>
+          <mat-button-toggle-group
+            class="sa-toggle sa-mode-toggle"
+            hideSingleSelectionIndicator
+            [value]="mode"
+            (valueChange)="onModeChange($event)"
+          >
+            <mat-button-toggle value="temperature">Altitude + Air Temp.</mat-button-toggle>
+            <mat-button-toggle value="offset">Altitude + Temp. Offset</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+
+        <div class="sa-field">
+          <label class="sa-label">Altitude</label>
+          <input
+            class="sa-input"
+            type="number"
+            [value]="altitude"
+            (input)="onInput($event, 'altitude')"
+          />
+          <mat-button-toggle-group
+            class="sa-toggle"
+            hideSingleSelectionIndicator
+            [value]="altUnit"
+            (valueChange)="onAltUnitChange($event)"
+          >
+            <mat-button-toggle value="ft">ft</mat-button-toggle>
+            <mat-button-toggle value="m">m</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+
+        @if (mode === 'temperature') {
+          <div class="sa-field">
+            <label class="sa-label">Air Temperature</label>
+            <input
+              class="sa-input"
+              type="number"
+              [value]="temperature"
+              (input)="onInput($event, 'temperature')"
+            />
+            <mat-button-toggle-group
+              class="sa-toggle"
+              hideSingleSelectionIndicator
+              [value]="tempUnit"
+              (valueChange)="onTempUnitChange($event)"
+            >
+              <mat-button-toggle value="C">°C</mat-button-toggle>
+              <mat-button-toggle value="F">°F</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+        } @else {
+          <div class="sa-field">
+            <label class="sa-label">Temperature Offset</label>
+            <input
+              class="sa-input"
+              type="number"
+              [value]="offset"
+              (input)="onInput($event, 'offset')"
+            />
+            <mat-button-toggle-group
+              class="sa-toggle"
+              hideSingleSelectionIndicator
+              [value]="offsetUnit"
+              (valueChange)="onOffsetUnitChange($event)"
+            >
+              <mat-button-toggle value="C">°C</mat-button-toggle>
+              <mat-button-toggle value="F">°F</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+        }
+      </div>
+
+      <div class="sa-results">
+        <div class="sa-result">
+          <div class="sa-result-value">{{ temperatureC }}{{ tempResultUnit === 'C' ? '°C' : '°F' }}</div>
+          <div class="sa-result-label">Temperature</div>
+          <mat-button-toggle-group
+            class="sa-toggle sa-result-toggle"
+            hideSingleSelectionIndicator
+            [value]="tempResultUnit"
+            (valueChange)="onTempResultUnitChange($event)"
+          >
+            <mat-button-toggle value="C">°C</mat-button-toggle>
+            <mat-button-toggle value="F">°F</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+
+        <div class="sa-isa-label">{{ isaTemperatureLabel }}</div>
+
+        <div class="sa-result">
+          <div class="sa-result-value">{{ densityAltitude }}</div>
+          <div class="sa-result-label">Density Altitude</div>
+          <mat-button-toggle-group
+            class="sa-toggle sa-result-toggle"
+            hideSingleSelectionIndicator
+            [value]="altResultUnit"
+            (valueChange)="onAltResultUnitChange($event)"
+          >
+            <mat-button-toggle value="ft">ft</mat-button-toggle>
+            <mat-button-toggle value="m">m</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+
+        <div class="sa-result">
+          <div class="sa-result-value">{{ pressure }}{{ pressResultUnit === 'hPa' ? ' hPa' : ' inHg' }}</div>
+          <div class="sa-result-label">Pressure</div>
+          <mat-button-toggle-group
+            class="sa-toggle sa-result-toggle"
+            hideSingleSelectionIndicator
+            [value]="pressResultUnit"
+            (valueChange)="onPressResultUnitChange($event)"
+          >
+            <mat-button-toggle value="hPa">hPa</mat-button-toggle>
+            <mat-button-toggle value="inHg">inHg</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+
+        <div class="sa-result">
+          <div class="sa-result-value">{{ airDensity }}</div>
+          <div class="sa-result-label">Air Density (kg/m³)</div>
+          <mat-button-toggle-group
+            class="sa-toggle sa-result-toggle sa-result-toggle-hidden"
+            hideSingleSelectionIndicator
+            [value]="altResultUnit"
+          >
+            <mat-button-toggle value="ft">ft</mat-button-toggle>
+            <mat-button-toggle value="m">m</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+
+        <div class="sa-result">
+          <div class="sa-result-value">{{ relativeDensity }}</div>
+          <div class="sa-result-label">Relative Density (σ)</div>
+          <mat-button-toggle-group
+            class="sa-toggle sa-result-toggle sa-result-toggle-hidden"
+            hideSingleSelectionIndicator
+            [value]="altResultUnit"
+          >
+            <mat-button-toggle value="ft">ft</mat-button-toggle>
+            <mat-button-toggle value="m">m</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+
+        <div class="sa-result">
+          <div class="sa-result-value">{{ speedOfSound }}</div>
+          <div class="sa-result-label">Sonic Speed</div>
+          <mat-button-toggle-group
+            class="sa-toggle sa-result-toggle"
+            hideSingleSelectionIndicator
+            [value]="speedUnit"
+            (valueChange)="onSpeedUnitChange($event)"
+          >
+            <mat-button-toggle value="ms">m/s</mat-button-toggle>
+            <mat-button-toggle value="fts">ft/s</mat-button-toggle>
+            <mat-button-toggle value="kmh">km/h</mat-button-toggle>
+            <mat-button-toggle value="mph">mph</mat-button-toggle>
+            <mat-button-toggle value="kt">kt</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+
+        <div class="sa-result">
+          <div class="sa-result-value">{{ viscosity }}</div>
+          <div class="sa-result-label">Viscosity (Pa·s)</div>
+          <mat-button-toggle-group
+            class="sa-toggle sa-result-toggle sa-result-toggle-hidden"
+            hideSingleSelectionIndicator
+            [value]="altResultUnit"
+          >
+            <mat-button-toggle value="ft">ft</mat-button-toggle>
+            <mat-button-toggle value="m">m</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+      </div>
+
+      <div class="sa-footer">
+        Based on <em>U.S. Standard Atmosphere 1976</em> (NASA-TM-X-74335)
+      </div>
+    </div>
+  </div>
+</div>

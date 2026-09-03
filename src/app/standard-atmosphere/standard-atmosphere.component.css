@@ -1,0 +1,139 @@
+.sa {
+  max-width: 600px;
+  margin: 2.5rem auto 0;
+}
+
+.sa-panel {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.sa-title {
+  margin: 0 0 1.25rem;
+  font-size: 1.4rem;
+  color: var(--text);
+}
+
+.sa-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem 1.25rem;
+}
+
+@media (max-width: 500px) {
+  .sa-fields {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sa-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.sa-mode-field {
+  grid-column: 1 / -1;
+}
+
+.sa-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--border-hover);
+  text-align: left;
+}
+
+.sa-input {
+  padding: 0.9rem 1rem;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.sa-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.sa-toggle {
+  align-self: flex-start;
+}
+
+.sa-mode-toggle {
+  width: 100%;
+}
+
+.sa-mode-toggle mat-button-toggle {
+  flex: 1;
+}
+
+.sa-results {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sa-result {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.sa-result-toggle {
+  flex-shrink: 0;
+}
+
+.sa-result-toggle-hidden {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.sa-result-value {
+  color: var(--accent);
+  text-align: right;
+  flex: 1;
+  font-size: 1.6rem;
+}
+
+.sa-result-label {
+  color: var(--border-hover);
+  font-weight: 500;
+  font-size: 1rem;
+  text-align: left;
+  flex: 1;
+}
+
+.sa-isa-label {
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--border-hover);
+  margin-top: -0.35rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.sa-footer {
+  margin-top: 1.25rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--border-hover);
+  font-style: normal;
+}

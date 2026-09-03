@@ -4,6 +4,7 @@ import { ConversionComponent } from './conversion/conversion.component';
 import { DensityAltitudeComponent } from './density-altitude/density-altitude.component';
 import { PlaceholderComponent } from './placeholder.component';
 import { RemindersComponent } from './reminders/reminders.component';
+import { StandardAtmosphereComponent } from './standard-atmosphere/standard-atmosphere.component';
 import { TopOfDescentComponent } from './top-of-descent/top-of-descent.component';
 
 export const routes: Routes = [
@@ -13,6 +14,7 @@ export const routes: Routes = [
   { path: 'top-of-descent', component: TopOfDescentComponent, data: { title: 'Descent profile' } },
   { path: 'reminders', component: RemindersComponent },
   { path: 'density-altitude', component: DensityAltitudeComponent },
+  { path: 'standard-atmosphere', component: StandardAtmosphereComponent },
   { path: 'app3', component: PlaceholderComponent, data: { title: 'App 3' } },
   { path: '**', redirectTo: 'alphabet-radio' },
 ];
