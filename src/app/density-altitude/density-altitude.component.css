@@ -63,6 +63,13 @@
   align-self: flex-start;
 }
 
+.da-toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  align-self: flex-start;
+}
+
 .da-check {
   display: inline-flex;
   align-items: center;
@@ -102,6 +109,11 @@
 
 .da-result-toggle {
   flex-shrink: 0;
+}
+
+.da-result-toggle-hidden {
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .da-result-value {
