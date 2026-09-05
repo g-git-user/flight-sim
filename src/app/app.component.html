@@ -4,7 +4,21 @@
     (touchstart)="onTouchStart($event)"
     (touchend)="onTouchEnd($event)"
   >
-    <div class="sidebar-title">Flight Sim</div>
+    <div class="sidebar-title">
+      <span class="brand-badge" aria-hidden="true">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M3 11l19-9-9 19-2-8-8-2z" />
+        </svg>
+      </span>
+      <span class="brand-name">Flight Sim</span>
+    </div>
 
     <div class="sidebar-pages-container">
       <div
@@ -41,6 +55,18 @@
           </div>
         }
       </div>
+    </div>
+
+    <div class="page-dots" aria-label="Pages">
+      @for (page of appPages(); track $index) {
+        <button
+          type="button"
+          class="page-dot"
+          [class.active]="currentPage() === $index"
+          (click)="currentPage.set($index)"
+          [attr.aria-label]="'Page ' + ($index + 1)"
+        ></button>
+      }
     </div>
 
   </nav>
