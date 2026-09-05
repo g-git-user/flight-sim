@@ -8,15 +8,30 @@
 
 .rem-panel {
   background: var(--surface);
-  border: 2px solid var(--border);
-  border-radius: 16px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
   padding: 1.5rem;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05),
+    0 12px 32px -12px rgba(15, 23, 42, 0.08);
 }
 
 .rem-title {
+  position: relative;
   margin: 0 0 1rem;
-  font-size: 1.4rem;
+  padding-left: 0.85rem;
+  font-size: 1.3rem;
   color: var(--text);
+}
+
+.rem-title::before {
+  content: "";
+  position: absolute;
+  top: 0.12em;
+  bottom: 0.12em;
+  left: 0;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--accent);
 }
 
 .rem-line {

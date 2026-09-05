@@ -21,15 +21,30 @@
 
 .conv-panel {
   background: var(--surface);
-  border: 2px solid var(--border);
-  border-radius: 16px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
   padding: 1.5rem;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05),
+    0 12px 32px -12px rgba(15, 23, 42, 0.08);
 }
 
 .conv-panel h2 {
+  position: relative;
   margin: 0 0 1.25rem;
-  font-size: 1.4rem;
+  padding-left: 0.85rem;
+  font-size: 1.3rem;
   color: var(--text);
+}
+
+.conv-panel h2::before {
+  content: "";
+  position: absolute;
+  top: 0.12em;
+  bottom: 0.12em;
+  left: 0;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--accent);
 }
 
 .conv-fuel {
@@ -38,7 +53,7 @@
   gap: 0.5rem;
   justify-content: center;
   align-items: center;
-  margin-top: 1.5rem;
+  margin-top: 1.25rem;
   padding-top: 1rem;
   border-top: 1px solid var(--border);
 }
@@ -74,14 +89,14 @@
 
 .conv-fuel-btn {
   padding: 0.45rem 1.1rem;
-  border: 2px solid var(--border);
-  border-radius: 8px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
   background: var(--bg);
   color: var(--text);
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .conv-fuel-btn:hover {
@@ -92,6 +107,7 @@
   background: var(--sidebar-active-bg);
   border-color: var(--sidebar-active-bg);
   color: #fff;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
 }
 
 .conv-fuel-btn .conv-fuel-icon.fuel-spin {
@@ -116,34 +132,37 @@
 }
 
 .conv-input {
+  -moz-appearance: textfield;
+  appearance: textfield;
   flex: 1;
   min-width: 0;
   width: 100%;
-  padding: 0.9rem 1rem;
-  border: 2px solid var(--border);
-  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
   background: var(--bg);
   color: var(--text);
   font-size: 1.3rem;
   font-weight: 700;
   text-align: center;
   box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.conv-input::placeholder {
+  color: var(--border-hover);
 }
 
 .conv-input:focus {
   outline: none;
   border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16);
 }
 
 .conv-input::-webkit-outer-spin-button,
 .conv-input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
-
-.conv-input {
-  -moz-appearance: textfield;
-  appearance: textfield;
 }
 
 .conv-results {
@@ -160,11 +179,15 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  padding: 0.9rem 1rem;
-  border: 2px solid var(--border);
-  border-radius: 10px;
-  background: var(--bg);
-  font-size: 1.3rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--bg) 88%, var(--accent) 6%),
+    var(--bg)
+  );
+  font-size: 1.25rem;
   font-weight: 600;
   color: var(--text);
 }
@@ -177,7 +200,7 @@
 .conv-result-label {
   color: var(--border-hover);
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 0.95rem;
   text-align: left;
   flex: 0 0 auto;
   width: 3rem;
@@ -186,4 +209,11 @@
 .conv-result-value {
   color: var(--accent);
   text-align: right;
+  font-size: 1.4rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+:host-context(.dark) .conv-result-value {
+  color: #60a5fa;
 }
