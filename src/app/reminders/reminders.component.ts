@@ -18,16 +18,37 @@ export class RemindersComponent {
     {
       title: 'CALCULATE TOD (3°)',
       lines: [
-        'Distance (NM) = (Δ_AltitudeFeet / 1000) x 3',
-        'Vertical Speed (fpm) = 5 x Ground Speed (kt)',
+        'Formula: Distance (NM) = (Δ-Altitude (ft) / 1000) x 3',
+        'Formula: Vertical Speed (fpm) = 5 x Ground Speed (kt)',
       ],
     },
     {
       title: 'VOR RANGE',
       lines: [
-        'Range (NM) ≈ 1.23 x √Altitude (ft)',
-        'Range (km) ≈ 3.57 x √Altitude (m)',
+        'Formula: Range (NM) ≈ 1.23 x √Altitude (ft)',
+        'Formula: Range (km) ≈ 3.57 x √Altitude (m)',
         '<em>> where altitude is AGL</em>',
+      ],
+    },
+    {
+      title: 'CONVERT CLIMB GRADIENT (ft/NM) TO FPM',
+      lines: [
+        'Formula: ft/NM requirement x NM per minute = FPM',
+        '<em>> Example: A departure procedure requires 300 ft/NM climb. At 120 KT ground speed</em>',
+      ],
+    },
+    {
+      title: 'DESCENT RATE',
+      lines: [
+        'Formula: (Altitude to lose (ft) ÷ Distance to descend (NM)) x (Groundspeed (kt) ÷ 60) = FPM',
+        '<em>> Example: You need to descend 6,000 feet over 20 NM. Groundspeed = 120 kt</em>',
+      ],
+    },
+    {
+      title: 'GROUND SPEED FROM TIME AND DISTANCE',
+      lines: [
+        'Formula: Distance (NM) ÷ Time (hours) = Groundspeed (kt)',
+        '<em>> Example: Covering 45 NM in 0.5 hours</em>',
       ],
     },
   ];
