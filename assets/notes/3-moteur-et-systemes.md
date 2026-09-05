@@ -20,3 +20,17 @@
 
 ![Avionics Master](https://raw.githubusercontent.com/g-git-user/flight-sim/refs/heads/main/assets/img/IMG_9596.jpeg)
 
+**Sélecteur de carburant** (Fuel Selector) = vanne permettant de choisir le réservoir alimentant le moteur. Positions :
+* **BOTH** : alimentation par les deux réservoirs (position normale en vol).
+* **LEFT / RIGHT** : alimentation par un seul réservoir.
+* **OFF** : coupure de l'alimentation (utilisée uniquement en cas d'urgence/incendie).
+
+![Fuel Selector](https://raw.githubusercontent.com/g-git-user/flight-sim/refs/heads/main/assets/img/fuel_selector.png)
+
+**Lumières extérieures** = balisage lumineux de l'appareil, avec un usage précis selon les phases de vol :
+* **Beacon** (feu rotatif rouge) : allumé dès la mise en route du moteur pour signaler l'appareil au sol.
+* **Nav lights** (feux de navigation) : vert à droite, rouge à gauche, blanc à l'arrière ; allumées en permanence en vol.
+* **Strobe** (feux à éclats) : lumière blanche à fort clignotement, utilisée pour être vu en vol et lors du franchissement de piste active.
+* **Landing / Taxi lights** : éclairage puissant vers l'avant, utilisé au sol, au décollage et à l'atterrissage.
+
+![Lights](https://raw.githubusercontent.com/g-git-user/flight-sim/refs/heads/main/assets/img/lights.png)
