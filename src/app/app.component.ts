@@ -29,13 +29,13 @@ export class AppComponent implements OnInit {
   readonly apps: AppItem[] = [
     { path: 'alphabet-radio', label: 'Radio Alphabet', icon: '✈' },
     { path: 'conversion', label: 'Conversion', icon: '⇄' },
-    { path: 'top-of-descent', label: 'Descent profile', icon: '↓' },
+    { path: 'top-of-descent', label: 'Descent profile', svg: 'M2 7l8.5 8.5 5-5L22 17v-6M22 17h-6' },
     {
       path: 'reminders',
       label: 'Reminders',
       svg: 'M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0',
     },
-    { path: 'density-altitude', label: 'Density Altitude', icon: '◉' },
+    { path: 'density-altitude', label: 'Density Altitude', icon: 'ρ' },
     { path: 'standard-atmosphere', label: 'Std Atmosphere', icon: '☁' },
   ];
 
