@@ -1,15 +1,9 @@
 .conversion {
-  max-width: 900px;
+  max-width: 600px;
   margin: 2.5rem auto 0;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-}
-
-@media (max-width: 768px) {
-  .conversion {
-    grid-template-columns: 1fr;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .conv-panel {
