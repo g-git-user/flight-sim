@@ -59,6 +59,17 @@
   border-color: var(--accent);
 }
 
+.da-input::-webkit-outer-spin-button,
+.da-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.da-input {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
 .da-toggle-row {
   display: flex;
   align-items: center;
