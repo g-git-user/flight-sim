@@ -23,6 +23,6 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - run: npm run deploy
+      - run: npm run deploy -- --repo "https://x-access-token:${GITHUB_TOKEN}@github.com/g-git-user/flight-sim.git"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
