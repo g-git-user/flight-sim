@@ -109,16 +109,10 @@
 
 .conv-input-row {
   display: flex;
+  flex-direction: column;
   align-items: stretch;
   gap: 0.5rem;
   margin: 1rem 0;
-}
-
-.conv-input-row .unit-select {
-  align-self: stretch;
-  height: auto;
-  box-sizing: border-box;
-  font-size: 1rem;
 }
 
 .conv-input {
@@ -132,7 +126,7 @@
   color: var(--text);
   font-size: 1.3rem;
   font-weight: 700;
-  text-align: right;
+  text-align: center;
   box-sizing: border-box;
 }
 
@@ -184,7 +178,7 @@
   color: var(--border-hover);
   font-weight: 500;
   font-size: 1rem;
-  text-align: right;
+  text-align: left;
   flex: 0 0 auto;
   width: 3rem;
 }
