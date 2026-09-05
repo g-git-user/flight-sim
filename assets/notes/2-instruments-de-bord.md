@@ -77,6 +77,8 @@ Mesure le **régime moteur** en tours par minute (tr/min). Il est gradué en cen
 * Régime à ne jamais dépasser : **rouge**.
 * Indique aussi approximativement la puissance délivrée (pour les hélices à pas fixe).
 
+![Tachymètre](https://raw.githubusercontent.com/g-git-user/flight-sim/refs/heads/main/assets/img/tachymetre.jpg)
+
 ### Indicateurs moteur
 
 Instruments secondaires surveillant l'état et la santé du moteur :
