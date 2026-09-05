@@ -59,10 +59,6 @@
   border-color: var(--accent);
 }
 
-.da-toggle {
-  align-self: flex-start;
-}
-
 .da-toggle-row {
   display: flex;
   align-items: center;
@@ -105,15 +101,6 @@
   font-size: 1.3rem;
   font-weight: 600;
   color: var(--text);
-}
-
-.da-result-toggle {
-  flex-shrink: 0;
-}
-
-.da-result-toggle-hidden {
-  visibility: hidden;
-  pointer-events: none;
 }
 
 .da-result-value {

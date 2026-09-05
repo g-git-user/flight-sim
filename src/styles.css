@@ -57,3 +57,37 @@ h1 {
   color: var(--border-hover);
   font-weight: 500;
 }
+
+.unit-select {
+  padding: 0.4rem 0.6rem;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.unit-select:focus {
+  border-color: var(--accent);
+}
+
+.unit-select.mode-select {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  font-size: 1rem;
+}
+
+.unit-select.result-select {
+  flex-shrink: 0;
+  width: 5.5rem;
+  text-align: center;
+}
+
+.unit-select.result-select-hidden {
+  visibility: hidden;
+  pointer-events: none;
+}

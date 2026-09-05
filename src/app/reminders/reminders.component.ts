@@ -22,5 +22,13 @@ export class RemindersComponent {
         'Vertical Speed (fpm) = 5 x Ground Speed (kt)',
       ],
     },
+    {
+      title: 'VOR RANGE',
+      lines: [
+        'Range (NM) ≈ 1.23 x √Altitude (ft)',
+        'Range (km) ≈ 3.57 x √Altitude (m)',
+        '<em>> where altitude is AGL</em>',
+      ],
+    },
   ];
 }

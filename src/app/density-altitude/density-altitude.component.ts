@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { ThemeToggleComponent } from '../theme-toggle.component';
 
 type AltUnit = 'ft' | 'm';
@@ -8,7 +7,7 @@ type QnhUnit = 'hPa' | 'inHg';
 @Component({
   selector: 'app-density-altitude',
   standalone: true,
-  imports: [ThemeToggleComponent, MatButtonToggleModule],
+  imports: [ThemeToggleComponent],
   templateUrl: './density-altitude.component.html',
   styleUrl: './density-altitude.component.css',
 })
