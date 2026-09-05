@@ -37,7 +37,6 @@ export class AppComponent implements OnInit {
     },
     { path: 'density-altitude', label: 'Density Altitude', icon: '◉' },
     { path: 'standard-atmosphere', label: 'Std Atmosphere', icon: '☁' },
-    { path: 'app3', label: 'App 3', icon: '3' },
   ];
 
   readonly currentPage = signal(0);
