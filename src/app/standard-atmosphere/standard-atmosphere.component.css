@@ -63,6 +63,17 @@
   border-color: var(--accent);
 }
 
+.sa-input::-webkit-outer-spin-button,
+.sa-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.sa-input {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
 .sa-results {
   margin-top: 1.5rem;
   display: flex;

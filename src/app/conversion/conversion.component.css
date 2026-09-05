@@ -141,6 +141,17 @@
   border-color: var(--accent);
 }
 
+.conv-input::-webkit-outer-spin-button,
+.conv-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.conv-input {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
 .conv-results {
   margin-top: 1.25rem;
   padding-top: 1.25rem;
