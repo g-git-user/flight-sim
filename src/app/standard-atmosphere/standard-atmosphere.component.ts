@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { ThemeToggleComponent } from '../theme-toggle.component';
 
 type InputMode = 'temperature' | 'offset';
@@ -29,7 +28,7 @@ const S_VISC = 110.4;
 @Component({
   selector: 'app-standard-atmosphere',
   standalone: true,
-  imports: [ThemeToggleComponent, MatButtonToggleModule],
+  imports: [ThemeToggleComponent],
   templateUrl: './standard-atmosphere.component.html',
   styleUrl: './standard-atmosphere.component.css',
 })

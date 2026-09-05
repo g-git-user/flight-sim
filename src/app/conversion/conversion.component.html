@@ -9,6 +9,36 @@
     <div class="conv-panel">
       <h2>{{ section.title }}</h2>
 
+      <div class="conv-input-row">
+        <input
+          class="conv-input"
+          type="number"
+          [value]="section.value"
+          (input)="onInput($event, section)"
+          placeholder="Enter value"
+        />
+        <select
+          class="unit-select"
+          [value]="section.fromUnit"
+          (change)="onFromUnitChange($event, section)"
+        >
+          @for (unit of section.units; track unit) {
+            <option [value]="unit">{{ unit }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="conv-results">
+        @for (unit of section.units; track unit) {
+          @if (unit !== section.fromUnit) {
+            <div class="conv-result">
+              <div class="conv-result-value">{{ resultFor(section, unit) }}</div>
+              <div class="conv-result-label">{{ unit }}</div>
+            </div>
+          }
+        }
+      </div>
+
       <div class="conv-fuel">
         @if (section.fuelTypes) {
           <div class="conv-fuel-btns">
@@ -18,6 +48,7 @@
             >
               <span class="conv-fuel-label">{{ section.activeFuel }}</span>
               <svg
+                #fuelIcon
                 class="conv-fuel-icon"
                 viewBox="0 0 24 24"
                 fill="none"
@@ -33,36 +64,6 @@
               </svg>
             </button>
           </div>
-        }
-        <div class="conv-row" [class.conv-row-fuel]="section.fuelTypes">
-          <mat-button-toggle-group
-            hideSingleSelectionIndicator
-            [value]="section.fromUnit"
-            (valueChange)="section.fromUnit = $event"
-          >
-            @for (unit of section.units; track unit) {
-              <mat-button-toggle [value]="unit">{{ unit }}</mat-button-toggle>
-            }
-          </mat-button-toggle-group>
-        </div>
-      </div>
-
-      <input
-        class="conv-input"
-        type="number"
-        [value]="section.value"
-        (input)="onInput($event, section)"
-        placeholder="Enter value"
-      />
-
-      <div class="conv-results">
-        @for (unit of section.units; track unit) {
-          @if (unit !== section.fromUnit) {
-            <div class="conv-result">
-              <div class="conv-result-value">{{ resultFor(section, unit) }}</div>
-              <div class="conv-result-label">{{ unit }}</div>
-            </div>
-          }
         }
       </div>
     </div>

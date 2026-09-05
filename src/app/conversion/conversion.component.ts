@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ThemeToggleComponent } from '../theme-toggle.component';
 
 type Unit = 'NM' | 'km' | 'ft' | 'm' | 'FL' | 'kt' | 'km/h' | 'mph' | 'inHg' | 'hPa' | 'mmHg' | 'kg' | 'lb' | 'gal' | 'L';
@@ -23,11 +22,13 @@ interface ConversionSection {
 @Component({
   selector: 'app-conversion',
   standalone: true,
-  imports: [ThemeToggleComponent, MatButtonToggleModule],
+  imports: [ThemeToggleComponent],
   templateUrl: './conversion.component.html',
   styleUrl: './conversion.component.css',
 })
 export class ConversionComponent {
+  @ViewChild('fuelIcon') fuelIcon: ElementRef<SVGElement> | undefined;
+
   readonly sections: ConversionSection[] = [
     {
       title: 'Distance Conversion',
@@ -93,6 +94,17 @@ export class ConversionComponent {
     const current = section.fuelTypes.findIndex((f) => f.name === section.activeFuel);
     const next = (current + 1) % section.fuelTypes.length;
     section.activeFuel = section.fuelTypes[next]?.name;
+
+    const el = this.fuelIcon?.nativeElement;
+    if (el) {
+      el.classList.remove('fuel-spin');
+      el.getBoundingClientRect();
+      el.classList.add('fuel-spin');
+    }
+  }
+
+  onFromUnitChange(event: Event, section: ConversionSection): void {
+    section.fromUnit = (event.target as HTMLSelectElement).value as Unit;
   }
 
   factorOf(section: ConversionSection): Partial<Record<Unit, number>> {

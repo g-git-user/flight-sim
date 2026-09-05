@@ -17,15 +17,14 @@
             [value]="altitude"
             (input)="onInput($event, 'altitude')"
           />
-          <mat-button-toggle-group
-            class="da-toggle"
-            hideSingleSelectionIndicator
+          <select
+            class="unit-select"
             [value]="altUnit"
-            (valueChange)="altUnit = $event"
+            (change)="altUnit = $any($event.target).value"
           >
-            <mat-button-toggle value="ft">ft</mat-button-toggle>
-            <mat-button-toggle value="m">m</mat-button-toggle>
-          </mat-button-toggle-group>
+            <option value="ft">ft</option>
+            <option value="m">m</option>
+          </select>
         </div>
 
         <div class="da-field">
@@ -36,15 +35,14 @@
             [value]="temperature"
             (input)="onInput($event, 'temperature')"
           />
-          <mat-button-toggle-group
-            class="da-toggle"
-            hideSingleSelectionIndicator
+          <select
+            class="unit-select"
             [value]="tempUnit"
-            (valueChange)="onTempUnitChange($event)"
+            (change)="onTempUnitChange($any($event.target).value)"
           >
-            <mat-button-toggle value="C">°C</mat-button-toggle>
-            <mat-button-toggle value="F">°F</mat-button-toggle>
-          </mat-button-toggle-group>
+            <option value="C">°C</option>
+            <option value="F">°F</option>
+          </select>
         </div>
 
         <div class="da-field">
@@ -56,15 +54,14 @@
             (input)="onInput($event, 'dewPoint')"
           />
           <div class="da-toggle-row">
-            <mat-button-toggle-group
-              class="da-toggle"
-              hideSingleSelectionIndicator
+            <select
+              class="unit-select"
               [value]="dewPointUnit"
-              (valueChange)="onDewPointUnitChange($event)"
+              (change)="onDewPointUnitChange($any($event.target).value)"
             >
-              <mat-button-toggle value="C">°C</mat-button-toggle>
-              <mat-button-toggle value="F">°F</mat-button-toggle>
-            </mat-button-toggle-group>
+              <option value="C">°C</option>
+              <option value="F">°F</option>
+            </select>
             <label class="da-check">
               <input
                 type="checkbox"
@@ -84,15 +81,14 @@
             [value]="qnh"
             (input)="onInput($event, 'qnh')"
           />
-          <mat-button-toggle-group
-            class="da-toggle"
-            hideSingleSelectionIndicator
+          <select
+            class="unit-select"
             [value]="qnhUnit"
-            (valueChange)="onQnhUnitChange($event)"
+            (change)="onQnhUnitChange($any($event.target).value)"
           >
-            <mat-button-toggle value="hPa">hPa</mat-button-toggle>
-            <mat-button-toggle value="inHg">inHg</mat-button-toggle>
-          </mat-button-toggle-group>
+            <option value="hPa">hPa</option>
+            <option value="inHg">inHg</option>
+          </select>
         </div>
       </div>
 
@@ -100,42 +96,39 @@
         <div class="da-result">
           <div class="da-result-value">{{ pressureAltitude }}</div>
           <div class="da-result-label">Pressure Altitude</div>
-          <mat-button-toggle-group
-            class="da-toggle da-result-toggle"
-            hideSingleSelectionIndicator
+          <select
+            class="unit-select result-select"
             [value]="paUnit"
-            (valueChange)="paUnit = $event"
+            (change)="paUnit = $any($event.target).value"
           >
-            <mat-button-toggle value="ft">ft</mat-button-toggle>
-            <mat-button-toggle value="m">m</mat-button-toggle>
-          </mat-button-toggle-group>
+            <option value="ft">ft</option>
+            <option value="m">m</option>
+          </select>
         </div>
 
         <div class="da-result">
           <div class="da-result-value">{{ densityAltitude }}</div>
           <div class="da-result-label">Density Altitude</div>
-          <mat-button-toggle-group
-            class="da-toggle da-result-toggle"
-            hideSingleSelectionIndicator
+          <select
+            class="unit-select result-select"
             [value]="daUnit"
-            (valueChange)="daUnit = $event"
+            (change)="daUnit = $any($event.target).value"
           >
-            <mat-button-toggle value="ft">ft</mat-button-toggle>
-            <mat-button-toggle value="m">m</mat-button-toggle>
-          </mat-button-toggle-group>
+            <option value="ft">ft</option>
+            <option value="m">m</option>
+          </select>
         </div>
 
         <div class="da-result">
           <div class="da-result-value">{{ airDensity }}</div>
           <div class="da-result-label">Air Density (kg/m³)</div>
-          <mat-button-toggle-group
-            class="da-toggle da-result-toggle da-result-toggle-hidden"
-            hideSingleSelectionIndicator
+          <select
+            class="unit-select result-select result-select-hidden"
             [value]="daUnit"
           >
-            <mat-button-toggle value="ft">ft</mat-button-toggle>
-            <mat-button-toggle value="m">m</mat-button-toggle>
-          </mat-button-toggle-group>
+            <option value="ft">ft</option>
+            <option value="m">m</option>
+          </select>
         </div>
       </div>
     </div>

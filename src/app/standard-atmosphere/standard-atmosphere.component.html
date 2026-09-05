@@ -11,15 +11,14 @@
       <div class="sa-fields">
         <div class="sa-field sa-mode-field">
           <label class="sa-label">Input Mode</label>
-          <mat-button-toggle-group
-            class="sa-toggle sa-mode-toggle"
-            hideSingleSelectionIndicator
+          <select
+            class="unit-select mode-select"
             [value]="mode"
-            (valueChange)="onModeChange($event)"
+            (change)="onModeChange($any($event.target).value)"
           >
-            <mat-button-toggle value="temperature">Altitude + Air Temp.</mat-button-toggle>
-            <mat-button-toggle value="offset">Altitude + Temp. Offset</mat-button-toggle>
-          </mat-button-toggle-group>
+            <option value="temperature">Altitude + Air Temp.</option>
+            <option value="offset">Altitude + Temp. Offset</option>
+          </select>
         </div>
 
         <div class="sa-field">
@@ -30,15 +29,14 @@
             [value]="altitude"
             (input)="onInput($event, 'altitude')"
           />
-          <mat-button-toggle-group
-            class="sa-toggle"
-            hideSingleSelectionIndicator
+          <select
+            class="unit-select"
             [value]="altUnit"
-            (valueChange)="onAltUnitChange($event)"
+            (change)="onAltUnitChange($any($event.target).value)"
           >
-            <mat-button-toggle value="ft">ft</mat-button-toggle>
-            <mat-button-toggle value="m">m</mat-button-toggle>
-          </mat-button-toggle-group>
+            <option value="ft">ft</option>
+            <option value="m">m</option>
+          </select>
         </div>
 
         @if (mode === 'temperature') {
@@ -50,15 +48,14 @@
               [value]="temperature"
               (input)="onInput($event, 'temperature')"
             />
-            <mat-button-toggle-group
-              class="sa-toggle"
-              hideSingleSelectionIndicator
+            <select
+              class="unit-select"
               [value]="tempUnit"
-              (valueChange)="onTempUnitChange($event)"
+              (change)="onTempUnitChange($any($event.target).value)"
             >
-              <mat-button-toggle value="C">°C</mat-button-toggle>
-              <mat-button-toggle value="F">°F</mat-button-toggle>
-            </mat-button-toggle-group>
+              <option value="C">°C</option>
+              <option value="F">°F</option>
+            </select>
           </div>
         } @else {
           <div class="sa-field">
@@ -69,15 +66,14 @@
               [value]="offset"
               (input)="onInput($event, 'offset')"
             />
-            <mat-button-toggle-group
-              class="sa-toggle"
-              hideSingleSelectionIndicator
+            <select
+              class="unit-select"
               [value]="offsetUnit"
-              (valueChange)="onOffsetUnitChange($event)"
+              (change)="onOffsetUnitChange($any($event.target).value)"
             >
-              <mat-button-toggle value="C">°C</mat-button-toggle>
-              <mat-button-toggle value="F">°F</mat-button-toggle>
-            </mat-button-toggle-group>
+              <option value="C">°C</option>
+              <option value="F">°F</option>
+            </select>
           </div>
         }
       </div>
@@ -86,15 +82,14 @@
         <div class="sa-result">
           <div class="sa-result-value">{{ temperatureC }}{{ tempResultUnit === 'C' ? '°C' : '°F' }}</div>
           <div class="sa-result-label">Temperature</div>
-          <mat-button-toggle-group
-            class="sa-toggle sa-result-toggle"
-            hideSingleSelectionIndicator
+          <select
+            class="unit-select result-select"
             [value]="tempResultUnit"
-            (valueChange)="onTempResultUnitChange($event)"
+            (change)="onTempResultUnitChange($any($event.target).value)"
           >
-            <mat-button-toggle value="C">°C</mat-button-toggle>
-            <mat-button-toggle value="F">°F</mat-button-toggle>
-          </mat-button-toggle-group>
+            <option value="C">°C</option>
+            <option value="F">°F</option>
+          </select>
         </div>
 
         <div class="sa-isa-label">{{ isaTemperatureLabel }}</div>
@@ -102,85 +97,79 @@
         <div class="sa-result">
           <div class="sa-result-value">{{ densityAltitude }}</div>
           <div class="sa-result-label">Density Altitude</div>
-          <mat-button-toggle-group
-            class="sa-toggle sa-result-toggle"
-            hideSingleSelectionIndicator
+          <select
+            class="unit-select result-select"
             [value]="altResultUnit"
-            (valueChange)="onAltResultUnitChange($event)"
+            (change)="onAltResultUnitChange($any($event.target).value)"
           >
-            <mat-button-toggle value="ft">ft</mat-button-toggle>
-            <mat-button-toggle value="m">m</mat-button-toggle>
-          </mat-button-toggle-group>
+            <option value="ft">ft</option>
+            <option value="m">m</option>
+          </select>
         </div>
 
         <div class="sa-result">
           <div class="sa-result-value">{{ pressure }}{{ pressResultUnit === 'hPa' ? ' hPa' : ' inHg' }}</div>
           <div class="sa-result-label">Pressure</div>
-          <mat-button-toggle-group
-            class="sa-toggle sa-result-toggle"
-            hideSingleSelectionIndicator
+          <select
+            class="unit-select result-select"
             [value]="pressResultUnit"
-            (valueChange)="onPressResultUnitChange($event)"
+            (change)="onPressResultUnitChange($any($event.target).value)"
           >
-            <mat-button-toggle value="hPa">hPa</mat-button-toggle>
-            <mat-button-toggle value="inHg">inHg</mat-button-toggle>
-          </mat-button-toggle-group>
+            <option value="hPa">hPa</option>
+            <option value="inHg">inHg</option>
+          </select>
         </div>
 
         <div class="sa-result">
           <div class="sa-result-value">{{ airDensity }}</div>
           <div class="sa-result-label">Air Density (kg/m³)</div>
-          <mat-button-toggle-group
-            class="sa-toggle sa-result-toggle sa-result-toggle-hidden"
-            hideSingleSelectionIndicator
+          <select
+            class="unit-select result-select result-select-hidden"
             [value]="altResultUnit"
           >
-            <mat-button-toggle value="ft">ft</mat-button-toggle>
-            <mat-button-toggle value="m">m</mat-button-toggle>
-          </mat-button-toggle-group>
+            <option value="ft">ft</option>
+            <option value="m">m</option>
+          </select>
         </div>
 
         <div class="sa-result">
           <div class="sa-result-value">{{ relativeDensity }}</div>
           <div class="sa-result-label">Relative Density (σ)</div>
-          <mat-button-toggle-group
-            class="sa-toggle sa-result-toggle sa-result-toggle-hidden"
-            hideSingleSelectionIndicator
+          <select
+            class="unit-select result-select result-select-hidden"
             [value]="altResultUnit"
           >
-            <mat-button-toggle value="ft">ft</mat-button-toggle>
-            <mat-button-toggle value="m">m</mat-button-toggle>
-          </mat-button-toggle-group>
+            <option value="ft">ft</option>
+            <option value="m">m</option>
+          </select>
         </div>
 
         <div class="sa-result">
           <div class="sa-result-value">{{ speedOfSound }}</div>
           <div class="sa-result-label">Sonic Speed</div>
-          <mat-button-toggle-group
-            class="sa-toggle sa-result-toggle"
-            hideSingleSelectionIndicator
+          <select
+            class="unit-select result-select"
             [value]="speedUnit"
-            (valueChange)="onSpeedUnitChange($event)"
+            (change)="onSpeedUnitChange($any($event.target).value)"
           >
-            <mat-button-toggle value="ms">m/s</mat-button-toggle>
-            <mat-button-toggle value="fts">ft/s</mat-button-toggle>
-            <mat-button-toggle value="kmh">km/h</mat-button-toggle>
-            <mat-button-toggle value="mph">mph</mat-button-toggle>
-            <mat-button-toggle value="kt">kt</mat-button-toggle>
-          </mat-button-toggle-group>
+            <option value="ms">m/s</option>
+            <option value="fts">ft/s</option>
+            <option value="kmh">km/h</option>
+            <option value="mph">mph</option>
+            <option value="kt">kt</option>
+          </select>
         </div>
 
         <div class="sa-result">
           <div class="sa-result-value">{{ viscosity }}</div>
           <div class="sa-result-label">Viscosity (Pa·s)</div>
-          <mat-button-toggle-group
-            class="sa-toggle sa-result-toggle sa-result-toggle-hidden"
-            hideSingleSelectionIndicator
+          <select
+            class="unit-select result-select result-select-hidden"
             [value]="altResultUnit"
           >
-            <mat-button-toggle value="ft">ft</mat-button-toggle>
-            <mat-button-toggle value="m">m</mat-button-toggle>
-          </mat-button-toggle-group>
+            <option value="ft">ft</option>
+            <option value="m">m</option>
+          </select>
         </div>
       </div>
 

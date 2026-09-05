@@ -63,18 +63,6 @@
   border-color: var(--accent);
 }
 
-.sa-toggle {
-  align-self: flex-start;
-}
-
-.sa-mode-toggle {
-  width: 100%;
-}
-
-.sa-mode-toggle mat-button-toggle {
-  flex: 1;
-}
-
 .sa-results {
   margin-top: 1.5rem;
   display: flex;
@@ -94,15 +82,6 @@
   font-size: 1.3rem;
   font-weight: 600;
   color: var(--text);
-}
-
-.sa-result-toggle {
-  flex-shrink: 0;
-}
-
-.sa-result-toggle-hidden {
-  visibility: hidden;
-  pointer-events: none;
 }
 
 .sa-result-value {
