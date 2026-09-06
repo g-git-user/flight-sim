@@ -31,7 +31,7 @@ export class ConversionComponent {
 
   readonly sections: ConversionSection[] = [
     {
-      title: 'Distance Conversion',
+      title: 'Distance',
       units: ['NM', 'km'],
       factor: { NM: 1, km: 1.852 },
       base: 'NM',
@@ -39,7 +39,7 @@ export class ConversionComponent {
       fromUnit: 'NM',
     },
     {
-      title: 'Altitude Conversion',
+      title: 'Altitude',
       units: ['ft', 'm', 'FL'],
       factor: { ft: 1, m: 0.3048, FL: 0.01 },
       base: 'ft',
@@ -47,7 +47,7 @@ export class ConversionComponent {
       fromUnit: 'ft',
     },
     {
-      title: 'Speed Conversion',
+      title: 'Speed',
       units: ['kt', 'km/h', 'mph'],
       factor: { kt: 1, 'km/h': 1.852, mph: 1.150779 },
       base: 'kt',
@@ -55,7 +55,7 @@ export class ConversionComponent {
       fromUnit: 'kt',
     },
     {
-      title: 'Pressure Conversion',
+      title: 'Pressure',
       units: ['inHg', 'hPa', 'mmHg'],
       factor: { inHg: 1, hPa: 33.86389, mmHg: 25.4 },
       base: 'inHg',
@@ -63,7 +63,7 @@ export class ConversionComponent {
       fromUnit: 'inHg',
     },
     {
-      title: 'Weight Conversion',
+      title: 'Weight',
       units: ['kg', 'lb'],
       factor: { kg: 1, lb: 2.204623 },
       base: 'kg',
@@ -71,7 +71,7 @@ export class ConversionComponent {
       fromUnit: 'kg',
     },
     {
-      title: 'Fuel Conversion',
+      title: 'Fuel',
       units: ['gal', 'lb', 'kg', 'L'],
       factor: { gal: 1, lb: 6.0, kg: 2.72155, L: 3.78541 },
       fuelTypes: [
