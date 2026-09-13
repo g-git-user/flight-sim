@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="app-header">
+    <h1>Morse Code</h1>
+    <app-theme-toggle />
+  </div>
+
+  <div class="controls">
+    <span class="label">Number of items:</span>
+    <div class="options">
+      @for (n of nbOptions; track n) {
+        <button
+          class="option"
+          [class.active]="nbItems() === n"
+          (click)="setNbItems(n)"
+        >
+          {{ n }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <div
+    class="card"
+    [class.revealed]="revealed()"
+    (click)="onCardClick()"
+  >
+    <div class="card-inner">
+      <div class="card-front">
+        @for (item of items(); track item.char) {
+          <span class="front-letter">
+            {{ item.char }}
+          </span>
+        }
+      </div>
+      <div class="card-back">
+        @for (item of items(); track item.char) {
+          <div class="item">
+            <span class="item-word">
+              {{ item.code }}
+            </span>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <section class="alphabet-section">
+    <button class="alphabet-toggle" (click)="toggleMorse()">
+      Morse Table
+      <span class="chevron" [class.rotated]="morseVisible()">&#9662;</span>
+    </button>
+    @if (morseVisible()) {
+      <div class="alphabet-grid">
+        @for (item of fullMorse; track item.char) {
+          <div class="alphabet-item">
+            <span class="alphabet-letter">{{ item.char }}</span>
+            <span class="alphabet-word">{{ item.code }}</span>
+          </div>
+        }
+      </div>
+    }
+  </section>
+</div>

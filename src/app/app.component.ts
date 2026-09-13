@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
 
   readonly apps: AppItem[] = [
     { path: 'alphabet-radio', label: 'Radio Alphabet', icon: '✈' },
+    { path: 'morse-code', label: 'Morse Code', icon: '··' },
     { path: 'conversion', label: 'Conversion', icon: '⇄' },
     { path: 'top-of-descent', label: 'Descent profile', svg: 'M2 7l8.5 8.5 5-5L22 17v-6M22 17h-6' },
     {
