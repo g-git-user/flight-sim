@@ -107,7 +107,13 @@ export class MorseCodeComponent {
   readonly playingItem = signal<string | null>(null);
 
   async playMorse(item: MorseItem): Promise<void> {
-    return new Promise((resolve) => {
+    const wasPlaying = this.isPlaying();
+    if (!wasPlaying) {
+      this.isPlaying.set(true);
+    }
+    this.playingItem.set(item.char);
+
+    await new Promise<void>((resolve) => {
       const audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
       const durationUnit = 0.15; // 150ms
       let startTime = audioCtx.currentTime;
@@ -143,6 +149,11 @@ export class MorseCodeComponent {
         resolve();
       }, (startTime - audioCtx.currentTime) * 1000);
     });
+
+    this.playingItem.set(null);
+    if (!wasPlaying) {
+      this.isPlaying.set(false);
+    }
   }
 
   async playSequence(): Promise<void> {
