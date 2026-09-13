@@ -5,17 +5,36 @@
   </div>
 
   <div class="controls">
-    <span class="label">Number of items:</span>
-    <div class="options">
-      @for (n of nbOptions; track n) {
-        <button
-          class="option"
-          [class.active]="nbItems() === n"
-          (click)="setNbItems(n)"
-        >
-          {{ n }}
-        </button>
-      }
+    <div class="control-group">
+      <span class="label">Number of items:</span>
+      <div class="options">
+        @for (n of nbOptions; track n) {
+          <button
+            class="option"
+            [class.active]="nbItems() === n"
+            (click)="setNbItems(n)"
+          >
+            {{ n }}
+          </button>
+        }
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <span class="label">Mode:</span>
+      <div class="options">
+        <button class="option mode" [class.active]="mode() === 'all'" (click)="setMode('all')">All</button>
+        <button class="option mode" [class.active]="mode() === 'letters'" (click)="setMode('letters')">ABC</button>
+        <button class="option mode" [class.active]="mode() === 'numbers'" (click)="setMode('numbers')">123</button>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <span class="label">Practice:</span>
+      <div class="options">
+        <button class="option mode" [class.active]="practiceMode() === 'text'" (click)="setPracticeMode('text')">Text</button>
+        <button class="option mode" [class.active]="practiceMode() === 'audio'" (click)="setPracticeMode('audio')">Audio</button>
+      </div>
     </div>
   </div>
 
@@ -26,19 +45,26 @@
   >
     <div class="card-inner">
       <div class="card-front">
-        @for (item of items(); track item.char) {
-          <span class="front-letter">
-            {{ item.char }}
-          </span>
+        @if (practiceMode() === 'text') {
+          @for (item of items(); track item.char) {
+            <span class="front-letter">{{ item.char }}</span>
+          }
+        } @else {
+          <button class="audio-btn" (click)="$event.stopPropagation(); playSequence()">▶</button>
         }
       </div>
       <div class="card-back">
         @for (item of items(); track item.char) {
           <div class="item">
             <span class="item-word">
-              {{ item.code }}
+              {{ item.char }}: {{ item.code }}
             </span>
           </div>
+        }
+        @if (items().length > 0) {
+            <button class="audio-btn" (click)="$event.stopPropagation(); playSequence()">
+              ▶
+            </button>
         }
       </div>
     </div>
@@ -50,9 +76,13 @@
       <span class="chevron" [class.rotated]="morseVisible()">&#9662;</span>
     </button>
     @if (morseVisible()) {
-      <div class="alphabet-grid">
+      <div class="alphabet-grid" [class.playing]="isPlaying()">
         @for (item of fullMorse; track item.char) {
-          <div class="alphabet-item">
+          <div 
+            class="alphabet-item" 
+            [class.playing]="playingItem() === item.char" 
+            (click)="playMorse(item)"
+          >
             <span class="alphabet-letter">{{ item.char }}</span>
             <span class="alphabet-word">{{ item.code }}</span>
           </div>

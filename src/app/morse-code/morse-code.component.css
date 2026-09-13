@@ -15,9 +15,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 2rem;
   flex-wrap: wrap;
   margin: 2.5rem 0;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .label {
@@ -43,6 +49,11 @@
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
   transition: border-color 0.2s ease, box-shadow 0.2s ease,
     transform 0.15s ease;
+}
+
+.option.mode {
+  width: auto;
+  padding: 0 1rem;
 }
 
 .option:hover {
@@ -118,11 +129,42 @@
   align-items: center;
   gap: 0.75rem 2.5rem;
   padding: 2rem;
+  position: relative;
 }
 
 .card-back .item {
   display: flex;
   align-items: center;
+  gap: 1rem;
+}
+
+.audio-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 12px;
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+.audio-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+}
+
+.audio-btn:active {
+  transform: scale(0.95);
 }
 
 .card-back .item-word {
@@ -191,6 +233,10 @@
   margin-top: 1.5rem;
 }
 
+.alphabet-grid.playing {
+  pointer-events: none;
+}
+
 .alphabet-item {
   display: flex;
   align-items: center;
@@ -200,7 +246,17 @@
   border: 1px solid var(--border);
   background: var(--surface);
   transition: border-color 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
 }
+
+.alphabet-item.playing {
+  cursor: not-allowed;
+  opacity: 1;
+  background: color-mix(in srgb, var(--accent) 20%, var(--surface));
+  border-color: var(--accent);
+  transform: scale(1.02);
+}
+
 
 .alphabet-item:hover {
   border-color: color-mix(in srgb, var(--border) 50%, var(--accent));
