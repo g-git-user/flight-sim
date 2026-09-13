@@ -21,7 +21,7 @@
     </div>
     
     <div class="control-group">
-      <span class="label">Mode:</span>
+      <span class="label">Filter:</span>
       <div class="options">
         <button class="option mode" [class.active]="mode() === 'all'" (click)="setMode('all')">All</button>
         <button class="option mode" [class.active]="mode() === 'letters'" (click)="setMode('letters')">ABC</button>
@@ -30,7 +30,7 @@
     </div>
     
     <div class="control-group">
-      <span class="label">Practice:</span>
+      <span class="label">Mode:</span>
       <div class="options">
         <button class="option mode" [class.active]="practiceMode() === 'text'" (click)="setPracticeMode('text')">Text</button>
         <button class="option mode" [class.active]="practiceMode() === 'audio'" (click)="setPracticeMode('audio')">Audio</button>
@@ -49,8 +49,10 @@
           @for (item of items(); track item.char) {
             <span class="front-letter">{{ item.char }}</span>
           }
-        } @else {
-          <button class="audio-btn" (click)="$event.stopPropagation(); playSequence()">▶</button>
+        }         @else {
+          <button class="audio-btn-large" (click)="$event.stopPropagation(); playSequence()">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </button>
         }
       </div>
       <div class="card-back">
@@ -63,7 +65,7 @@
         }
         @if (items().length > 0) {
             <button class="audio-btn" (click)="$event.stopPropagation(); playSequence()">
-              ▶
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
             </button>
         }
       </div>

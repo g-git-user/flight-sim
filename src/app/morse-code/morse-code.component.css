@@ -5,9 +5,6 @@
 }
 
 .app-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin-bottom: 2rem;
 }
 
@@ -106,6 +103,25 @@
   flex-wrap: wrap;
   gap: 1rem;
   padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-front .audio-btn-large {
+  font-size: 5rem;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  border: none;
+  background: var(--accent);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  transition: transform 0.2s ease, background 0.2s ease;
 }
 
 .card-front .front-letter {
@@ -146,7 +162,6 @@
   width: 3rem;
   height: 3rem;
   cursor: pointer;
-  font-size: 1.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -157,6 +172,13 @@
   right: 1rem;
 }
 
+.audio-btn svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: currentColor;
+  margin-left: 0.2rem;
+}
+
 .audio-btn:hover {
   border-color: var(--accent);
   color: var(--accent);
@@ -165,6 +187,32 @@
 
 .audio-btn:active {
   transform: scale(0.95);
+}
+
+.card-front .audio-btn-large {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+
+.card-front .audio-btn-large svg {
+  width: 3rem;
+  height: 3rem;
+  fill: currentColor;
+}
+
+.card-front .audio-btn-large:hover {
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .card-back .item-word {
