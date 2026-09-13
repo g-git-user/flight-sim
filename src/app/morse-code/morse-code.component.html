@@ -50,7 +50,7 @@
             <span class="front-letter">{{ item.char }}</span>
           }
         }         @else {
-          <button class="audio-btn-large" (click)="$event.stopPropagation(); playSequence()">
+          <button class="audio-btn-large" [class.playing]="isPlaying()" (click)="$event.stopPropagation(); playSequence()">
             <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
           </button>
         }
@@ -64,7 +64,7 @@
           </div>
         }
         @if (items().length > 0) {
-            <button class="audio-btn" (click)="$event.stopPropagation(); playSequence()">
+            <button class="audio-btn" [class.playing]="isPlaying()" (click)="$event.stopPropagation(); playSequence()">
               <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
             </button>
         }
