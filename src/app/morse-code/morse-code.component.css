@@ -180,9 +180,7 @@
 }
 
 .audio-btn:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+  border-color: var(--border-hover);
 }
 
 .audio-btn:active {
@@ -211,8 +209,7 @@
 }
 
 .card-front .audio-btn-large:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+  border-color: var(--border-hover);
 }
 
 .card-back .item-word {
