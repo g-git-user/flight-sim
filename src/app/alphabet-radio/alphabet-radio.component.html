@@ -24,6 +24,9 @@
     [class.revealed]="revealed()"
     (click)="onCardClick()"
   >
+    @if (progress()) {
+      <div class="progress">{{ progress() }}</div>
+    }
     <div class="card-inner">
       <div class="card-front">
         @for (item of letters(); track item.letter) {
@@ -44,6 +47,17 @@
         }
       </div>
     </div>
+    @if (progress()) {
+      <div class="current-sequence">
+        Séquence :
+        @for (char of currentCycleSequence(); track char; let i = $index) {
+          <span [class.active-char]="char === letters()[0].letter">
+            {{ char }}
+          </span>
+          @if (i < currentCycleSequence().length - 1) { - }
+        }
+      </div>
+    }
   </div>
 
   <section class="alphabet-section">

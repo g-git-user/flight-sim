@@ -43,6 +43,9 @@
     [class.revealed]="revealed()"
     (click)="onCardClick()"
   >
+    @if (progress()) {
+      <div class="progress">{{ progress() }}</div>
+    }
     <div class="card-inner">
       <div class="card-front">
         @if (practiceMode() === 'text') {
@@ -70,6 +73,17 @@
         }
       </div>
     </div>
+    @if (progress()) {
+      <div class="current-sequence">
+        Séquence :
+        @for (char of currentCycleSequence(); track char; let i = $index) {
+          <span [class.active-char]="char === items()[0].char">
+            {{ char }}
+          </span>
+          @if (i < currentCycleSequence().length - 1) { - }
+        }
+      </div>
+    }
   </div>
 
   <section class="alphabet-section">

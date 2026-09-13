@@ -29,18 +29,20 @@ export class MorseCodeComponent {
   readonly items = signal<MorseItem[]>([]);
   readonly revealed = signal(false);
   readonly morseVisible = signal(false);
+  readonly progress = signal<string | null>(null);
+  readonly cycleQueue = signal<string[]>([]);
+  readonly currentCycleSequence = signal<string[]>([]);
   readonly mode = signal<'all' | 'letters' | 'numbers'>('letters');
   readonly practiceMode = signal<'text' | 'audio'>('text');
   
   private readonly allChars: string[] = Object.keys(MORSE_CODE);
+  private lastPick: string | null = null;
   
-  private get filteredChars(): string[] {
+  get filteredChars(): string[] {
     if (this.mode() === 'letters') return this.allChars.filter(c => isNaN(parseInt(c)));
     if (this.mode() === 'numbers') return this.allChars.filter(c => !isNaN(parseInt(c)));
     return this.allChars;
   }
-
-  private lastPick: string | null = null;
 
   readonly fullMorse: MorseItem[] = this.allChars.map((c) => ({
     char: c,
@@ -53,11 +55,15 @@ export class MorseCodeComponent {
 
   setNbItems(nb: number): void {
     this.nbItems.set(nb);
+    this.cycleQueue.set([]);
+    this.currentCycleSequence.set([]);
     this.newSession();
   }
 
   setMode(mode: 'all' | 'letters' | 'numbers'): void {
     this.mode.set(mode);
+    this.cycleQueue.set([]);
+    this.currentCycleSequence.set([]);
     this.newSession();
   }
 
@@ -79,16 +85,34 @@ export class MorseCodeComponent {
     const pool = this.filteredChars;
     if (pool.length === 0) return;
 
-    let picked: string[];
-    do {
-      picked = this.shuffle(pool).slice(0, Math.min(this.nbItems(), pool.length));
-    } while (picked.join('') === this.lastPick && pool.length > 1);
+    if (this.nbItems() === 1) {
+      if (this.cycleQueue().length === 0) {
+        const sequence = this.shuffle(pool);
+        this.cycleQueue.set(sequence);
+        this.currentCycleSequence.set([...sequence].reverse());
+      }
+      const queue = [...this.cycleQueue()];
+      const picked = [queue.pop()!];
+      this.cycleQueue.set(queue);
+      this.lastPick = picked.join('');
+      this.items.set(
+        picked.map((c) => ({ char: c, code: MORSE_CODE[c] }))
+      );
+      this.progress.set(`${pool.length - this.cycleQueue().length}/${pool.length}`);
+      this.revealed.set(false);
+    } else {
+      let picked: string[];
+      do {
+        picked = this.shuffle(pool).slice(0, Math.min(this.nbItems(), pool.length));
+      } while (picked.join('') === this.lastPick && pool.length > 1);
 
-    this.lastPick = picked.join('');
-    this.items.set(
-      picked.map((c) => ({ char: c, code: MORSE_CODE[c] }))
-    );
-    this.revealed.set(false);
+      this.lastPick = picked.join('');
+      this.items.set(
+        picked.map((c) => ({ char: c, code: MORSE_CODE[c] }))
+      );
+      this.progress.set(null);
+      this.revealed.set(false);
+    }
   }
 
   onCardClick(): void {

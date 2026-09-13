@@ -53,8 +53,12 @@ export class AlphabetRadioComponent {
   readonly letters = signal<LetterItem[]>([]);
   readonly revealed = signal(false);
   readonly alphabetVisible = signal(false);
-  private readonly alphabet: string[] = Object.keys(NATO_PHONETIC);
+  readonly progress = signal<string | null>(null);
+  readonly cycleQueue = signal<string[]>([]);
+  readonly currentCycleSequence = signal<string[]>([]);
+  readonly alphabet: string[] = Object.keys(NATO_PHONETIC);
   private lastPick: string | null = null;
+  
   readonly fullAlphabet: LetterItem[] = this.alphabet.map((l) => ({
     letter: l,
     word: NATO_PHONETIC[l],
@@ -66,6 +70,8 @@ export class AlphabetRadioComponent {
 
   setNbLetters(nb: number): void {
     this.nbLetters.set(nb);
+    this.cycleQueue.set([]);
+    this.currentCycleSequence.set([]);
     this.newSession();
   }
 
@@ -79,16 +85,34 @@ export class AlphabetRadioComponent {
   }
 
   newSession(): void {
-    let picked: string[];
-    do {
-      picked = this.shuffle(this.alphabet).slice(0, this.nbLetters());
-    } while (picked.join('') === this.lastPick);
+    if (this.nbLetters() === 1) {
+      if (this.cycleQueue().length === 0) {
+        const sequence = this.shuffle(this.alphabet);
+        this.cycleQueue.set(sequence);
+        this.currentCycleSequence.set([...sequence].reverse());
+      }
+      const queue = [...this.cycleQueue()];
+      const picked = [queue.pop()!];
+      this.cycleQueue.set(queue);
+      this.lastPick = picked.join('');
+      this.letters.set(
+        picked.map((l) => ({ letter: l, word: NATO_PHONETIC[l] }))
+      );
+      this.progress.set(`${this.alphabet.length - this.cycleQueue().length}/${this.alphabet.length}`);
+      this.revealed.set(false);
+    } else {
+      let picked: string[];
+      do {
+        picked = this.shuffle(this.alphabet).slice(0, this.nbLetters());
+      } while (picked.join('') === this.lastPick);
 
-    this.lastPick = picked.join('');
-    this.letters.set(
-      picked.map((l) => ({ letter: l, word: NATO_PHONETIC[l] }))
-    );
-    this.revealed.set(false);
+      this.lastPick = picked.join('');
+      this.letters.set(
+        picked.map((l) => ({ letter: l, word: NATO_PHONETIC[l] }))
+      );
+      this.progress.set(null);
+      this.revealed.set(false);
+    }
   }
 
   onCardClick(): void {
